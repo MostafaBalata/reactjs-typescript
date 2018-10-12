@@ -1,5 +1,9 @@
 {
-  "extends": "typestrict",
+  "extends": [
+    "typestrict",
+    "tslint:latest",
+    "tslint-config-prettier"
+  ],
   "rulesDirectory": [
     "./node_modules/tslint-eslint-rules/dist/rules"
   ],
@@ -37,6 +41,7 @@
     "no-console": true,
     "no-debugger": true,
     "no-invalid-this": false,
+    "object-literal-sort-keys": false,
     "typedef": [
       true,
       "call-signature"

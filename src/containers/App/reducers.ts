@@ -1,16 +1,16 @@
-import { Action, ActionTypes } from './actions'
+import { Action, ActionTypes } from "./actions";
 
 // Define our State interface for the current reducer
 export interface IState {
-  number: number,
-  message: string
+  number: number;
+  message: string;
 }
 
 // Define our initialState
 export const initialState: IState = {
   number: 0,
-  message: ""
-}
+  message: "",
+};
 
 /* 
  * Reducer takes 2 arguments
@@ -19,20 +19,19 @@ export const initialState: IState = {
  */
 export function appReducer(state: IState = initialState, action: Action): IState {
   switch (action.type) {
-
     case ActionTypes.INCREASE:
-      const number = state.number + 1
+      const num: number = state.number + 1;
       return {
         ...state,
-        number: number
-      }
+        number: num
+      };
 
     case ActionTypes.SAGA_HELLO:
       return {
         ...state,
-        message: action.payload
-      }
+        message: action.payload,
+      };
     default:
-      return state
+      return state;
   }
 }

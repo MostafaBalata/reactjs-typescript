@@ -1,17 +1,16 @@
-import * as React from 'react';
-import { connect } from 'react-redux'
+import * as React from "react";
+import { connect } from "react-redux";
 
-import { Header } from '../../components/Header'
-import { Hello } from '../../components/Hello';
+import { Header } from "../../components/Header";
+import { Hello } from "../../components/Hello";
 
-import { increase } from './actions'
+import { increase } from "./actions";
 
-import '../../styles/main.scss';
+import "../../styles/main.scss";
 import * as styles from "./styles.scss";
 
 class App extends React.Component<any, any> {
-
-  render(): React.ReactNode {
+  public render(): React.ReactNode {
     return (
       <div>
         <Header />
@@ -23,20 +22,23 @@ class App extends React.Component<any, any> {
             </div>
           </div>
         </div>
-      </div>)
+      </div>
+    );
   }
 }
-
 
 const mapStateToProps = (state: any) => {
   return {
-    number: state.app.number,
-    message: state.app.message
-  }
-}
+    message: state.app.message,
+    number: state.app.number
+  };
+};
 
 const mapDispatchToProps = (dispatch: any) => ({
-  increaseNumber: () => dispatch(increase())
-})
+  increaseNumber: () => dispatch(increase()),
+});
 
-export default connect<any, any, any>(mapStateToProps, mapDispatchToProps)(App)
+export default connect<any, any, any>(
+  mapStateToProps,
+  mapDispatchToProps,
+)(App);
