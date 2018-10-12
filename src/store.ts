@@ -4,7 +4,7 @@ import { createReducer } from './reducers'
 
 import createSagaMiddleware from 'redux-saga'
 
-import { mySaga } from './saga';
+import { mainSaga } from './saga';
 
 /*
  * We're giving State interface to create store
@@ -31,5 +31,5 @@ export const store = createStore(
   enhancer,
 )
 
-// then run the saga
-sagaMiddleware.run(mySaga)
+// Run saga
+sagaMiddleware.run((mainSaga as any))

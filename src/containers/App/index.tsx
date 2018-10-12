@@ -7,6 +7,7 @@ import { Hello } from '../../components/Hello';
 import { increase } from './actions'
 
 import '../../styles/main.scss';
+import * as styles from "./styles.scss";
 
 class App extends React.Component<any, any> {
 
@@ -14,7 +15,14 @@ class App extends React.Component<any, any> {
     return (
       <div>
         <Header />
-        <Hello num={this.props.number} onClick={this.props.increaseNumber}/>
+        <div className={styles.app}>
+          <div className={styles.container}>
+            <div className={styles.well}>
+              <Hello num={this.props.number} onClick={this.props.increaseNumber} />
+              <p>Saga message: {this.props.message}</p>
+            </div>
+          </div>
+        </div>
       </div>)
   }
 }
@@ -22,7 +30,8 @@ class App extends React.Component<any, any> {
 
 const mapStateToProps = (state: any) => {
   return {
-    number: state.app.number
+    number: state.app.number,
+    message: state.app.message
   }
 }
 

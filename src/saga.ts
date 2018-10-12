@@ -1,16 +1,23 @@
-import { effects } from "redux-saga";
-import { takeLatest } from 'redux-saga/effects'
+import { effects, SagaIterator } from "redux-saga";
 
-import { ActionTypes } from './containers/App/actions';
+import { appSaga } from './containers/App/saga';
 
-function* afterRun(action: any): any {
-  // yield something :D
+
+function* sagas(): SagaIterator{
+  yield effects.all([
+    effects.fork(appSaga),
+  ]);
 }
 
-function* mySaga(): Iterator<effects.Effect> {
-  yield takeLatest(ActionTypes.INCREASE, afterRun);
+function* mainSaga(): SagaIterator {
+  try {
+    yield effects.call(sagas);
+  } catch (error) {
+    // tslint:disable-next-line
+    console.error(error)
+  }
 }
 
 export {
-  mySaga
+  mainSaga
 };

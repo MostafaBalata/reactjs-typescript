@@ -1,13 +1,15 @@
 # reactjs-typescript
-Reactjs with typescript and sass kick starter
+Reactjs project with typescript and sass kick starter
 
-# NOTE: Not finished yet
+# Important
+Read me is not Not finished yet
 
-Technology Stack
-1- React
-2- Redux
-3- Sass
-4- Saga
-5- webpack
-6- typescript
-7- Bootstrap
+# Technology Stack:
+
+* React
+* Redux
+* Sass
+* Saga
+* webpack
+* typescript
+* Bootstrap

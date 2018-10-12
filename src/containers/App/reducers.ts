@@ -2,12 +2,14 @@ import { Action, ActionTypes } from './actions'
 
 // Define our State interface for the current reducer
 export interface IState {
-    number: number
+  number: number,
+  message: string
 }
 
 // Define our initialState
 export const initialState: IState = {
-    number: 0 // We don't have any todos at the start of the app
+  number: 0,
+  message: ""
 }
 
 /* 
@@ -16,17 +18,21 @@ export const initialState: IState = {
  * action: Action to be handled. Since we are in todos reducer, action type is Action defined in our actions/todos file.
  */
 export function appReducer(state: IState = initialState, action: Action): IState {
-    switch (action.type) {
+  switch (action.type) {
 
-        case ActionTypes.INCREASE: {
+    case ActionTypes.INCREASE:
+      const number = state.number + 1
+      return {
+        ...state,
+        number: number
+      }
 
-            const number = state.number + 1
-            return {
-                ...state,
-                number: number
-            }
-        }
-        default:
-            return state
-    }
+    case ActionTypes.SAGA_HELLO:
+      return {
+        ...state,
+        message: action.payload
+      }
+    default:
+      return state
+  }
 }

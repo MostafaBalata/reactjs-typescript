@@ -5,9 +5,11 @@ interface IProps {
     num: number,
     onClick: (e: any) => void
 }
-const Hello: React.SFC<IProps> = (props) => <div className={styles.header}>
-    Hello [{props.num}] from the other live3
-<button className="btn btn-danger" onClick={props.onClick}>click</button>
+
+const Hello: React.SFC<IProps> = (props) => <div className={styles.hello}>
+    Redux example: store: <b>[{props.num}]</b> :D
+    <br />
+    <button className="btn btn-danger" onClick={props.onClick}>Increase</button>
 </div>
 
 export {
