@@ -11,6 +11,6 @@
       "target": "es5"
     },
     "include": [
-      "./src/**/**/*", "webpack/webpack.config.old.js", "webpack/webpack.config.prod.js", "webpack/webpack.config.dev.js", "webpack/paths.js", "config/webpack.config.js"
+      "./src/**/**/*", "webpack/webpack.config.prod.js", "webpack/webpack.config.dev.js", "webpack/paths.js", "config/webpack.config.js"
     ]
   }

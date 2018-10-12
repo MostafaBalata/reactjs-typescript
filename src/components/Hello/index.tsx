@@ -7,9 +7,11 @@ interface IProps {
 }
 
 const Hello: React.SFC<IProps> = (props) => <div className={styles.hello}>
-    Redux example: store: <b>[{props.num}]</b> :D
+    <h1>Hello!</h1>
     <br />
-    <button className="btn btn-danger" onClick={props.onClick}>Increase</button>
+    Redux Test: : <b>[{props.num}]</b> :D
+    <br />
+    <button className="btn btn-danger" onClick={props.onClick}>Check</button>
 </div>
 
 export {
