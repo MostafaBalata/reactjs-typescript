@@ -33,19 +33,19 @@ class App extends React.Component<IProps, any> {
       <div>
         <Header />
         <div className={styles.app}>
-          <div className={"row"}>
-            <div className="col-md-3">
-              <LeftMenu />
-            </div>
-            <div className="col-md-9">
-              <div  >
-                <div className={styles.well} >
-                  <Hello num={this.props.number} onClick={this.props.increaseAction} />
-                  <p>Saga message: {this.props.message}</p>
-                </div>
+          <div>
+            <LeftMenu />
+
+            <div className={styles.well} >
+              <div className="container-fluid">
+                <Hello num={this.props.number} onClick={this.props.increaseAction} />
+                <p>Saga message: {this.props.message}</p>
+
               </div>
             </div>
+
           </div>
+
         </div>
       </div>
     );

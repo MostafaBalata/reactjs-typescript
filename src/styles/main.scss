@@ -4,6 +4,7 @@
 :global {
   // Expose libs styles
   @import "./libs/bootstrap/bootstrap.scss";
+  @import "./base/bootstrap-override.scss";
 
   // Expose base styles
 
