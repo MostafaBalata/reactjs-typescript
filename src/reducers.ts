@@ -4,12 +4,12 @@
 
 import { combineReducers, Reducer } from "redux";
 
-import { appReducer } from "./containers/App/reducers";
+import { homePageReducer } from "./containers/HomePage/reducers";
 /**
  * Creates the main reducer with the dynamically injected ones
  */
 export function createReducer(): Reducer {
   return combineReducers({
-    app: appReducer,
+    homePage: homePageReducer,
   });
 }

@@ -3,17 +3,22 @@ import * as styles from "./styles.scss";
 
 interface IProps {
   num: number;
+  message: string,
   onClick: (e: any) => void;
 }
 
 const Hello: React.SFC<IProps> = props => (
   <div className={styles.hello}>
-    <h1>Hello!</h1>
-    <br />
-    Redux Test: : <b>[{props.num}]</b> :D
-    <br />
+    <h1 className="big-title">Hello!</h1>
+
+    <h2>Redux state</h2>
+    <p>  : : <span>{props.num}</span> : :</p>
+
+    <h2>Sage middleware</h2>
+    <p>  : : <span>{props.message}</span> : :</p>
+
     <button className="btn btn-success" onClick={props.onClick}>
-      Check
+      click
     </button>
   </div>
 );

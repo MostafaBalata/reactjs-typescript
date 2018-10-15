@@ -18,13 +18,13 @@ export const LeftMenu: React.SFC = () => {
       <div className={styles.leftMenuLinkContainer}>
         <ul className={styles.list} >
           <p className={styles.title}>Services</p>
-          <LeftMenuLink content="Home" icon="home" />
-          <LeftMenuLink content="Service 1" icon="eye-dropper" />
-          <LeftMenuLink content="Service 2" icon="expand" />
-          <LeftMenuLink content="Service 3" icon="paw" />
+          <LeftMenuLink content="Home" icon="home" link="/" />
+          <LeftMenuLink content="Service 1" icon="eye-dropper" link="/" />
+          <LeftMenuLink content="Service 2" icon="expand" link="/" />
+          <LeftMenuLink content="Not Found" icon="paw" link="/not-found" />
           <p className={styles.title}>Settings</p>
-          <LeftMenuLink content="Profile" icon="expand" />
-          <LeftMenuLink content="Account" icon="eye-dropper" />
+          <LeftMenuLink content="Profile" icon="expand" link="/" />
+          <LeftMenuLink content="Account" icon="eye-dropper" link="/" />
         </ul>
       </div>
     </div>

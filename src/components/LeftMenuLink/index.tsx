@@ -8,21 +8,26 @@ import * as styles from './styles.scss';
 import { IconProp, library } from '@fortawesome/fontawesome-svg-core'
 import { fas } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Link } from 'react-router-dom';
 
 library.add(fas)
 
 interface IProps {
   content: string,
-  icon: IconProp
+  icon: IconProp,
+  link: string
 }
 
-const LeftMenuLink: React.SFC<IProps> = ({ content, icon }) => {
+const LeftMenuLink: React.SFC<IProps> = ({ content, icon , link}) => {
   return (
     <li className={styles.item}>
-      <a className={`${styles.link}`} href="#">
+      <Link className={`${styles.link}`} to={{
+        pathname: link,
+        search: ''
+      }}>
         <FontAwesomeIcon className={styles.linkIcon} icon={icon} />
         <span>{content} </span>
-      </a>
+      </Link>
     </li>
   )
 }

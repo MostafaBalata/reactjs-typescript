@@ -6,19 +6,19 @@ interface IPropsApp {
   increaseAction(): void
 }
 
-const selecApp = () => (state: any) => state.app;
+const selecHomePageReducer = () => (state: any) => state.homePage;
 
 // Selectors
 const selecMessage = (state: IPropsApp) => state.message;
 const selecNumber = (state: IPropsApp) => state.number;
 
 const makeSelectMessage = () => createSelector(
-  selecApp(),
+  selecHomePageReducer(),
   (substate) => substate.message,
 );
 
 const makeSelectNumber = () => createSelector(
-  selecApp(),
+  selecHomePageReducer(),
   (substate) => substate.number,
 );
 export {

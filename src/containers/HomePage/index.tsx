@@ -2,6 +2,7 @@
 import * as React from "react";
 
 // styles
+import * as styles from './styles.scss';
 
 // componets
 import { Hello } from "../../components/Hello";
@@ -13,19 +14,19 @@ import { createStructuredSelector } from 'reselect';
 import { connect } from "react-redux";
 
 // Actions
-import { increaseAction } from "../App/actions";
+import { increaseAction } from "./actions";
 
 // Selctors
-import { IPropsApp, makeSelectMessage, makeSelectNumber, selecMessage, selecNumber } from '../App/selectors';
+import { IPropsApp, makeSelectMessage, makeSelectNumber, selecMessage, selecNumber } from './selectors';
+
 
 const HomePage: React.SFC<IPropsApp> = (props: IPropsApp) => {
   const num = selecNumber(props);
   const message = selecMessage(props)
 
   return (
-    <div>
-      <Hello num={num} onClick={props.increaseAction} />
-      <p>Saga message: {message}</p>
+    <div className={styles.homePage}>
+      <Hello num={num} onClick={props.increaseAction} message={message} />
     </div >
   );
 }

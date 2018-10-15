@@ -2,5 +2,9 @@
 @import "../../styles/variables/variables.scss";
 
 .hello { /* stylelint-ignore */
-  // 
+  span {
+    color: $green;
+    font-weight: 100;
+    font-size: 8rem
+  }
 }

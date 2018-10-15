@@ -1,6 +1,6 @@
 import { effects, SagaIterator } from "redux-saga";
 
-import { appSaga } from "./containers/App/saga";
+import { appSaga } from "./containers/HomePage/saga";
 
 function* sagas(): SagaIterator {
   yield effects.all([effects.fork(appSaga)]);

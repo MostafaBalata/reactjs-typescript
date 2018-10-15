@@ -17,7 +17,7 @@ export const initialState: IState = {
  * state: The state of the reducer. By default initialState ( if there was no state provided)
  * action: Action to be handled. Since we are in todos reducer, action type is Action defined in our actions file.
  */
-export function appReducer(state: IState = initialState, action: Action): IState {
+export function homePageReducer(state: IState = initialState, action: Action): IState {
   switch (action.type) {
     case ActionTypes.INCREASE:
       const num: number = state.number + 1;

@@ -26,7 +26,7 @@
   &:hover {
     color: $white;
     background: $left-menu-link-hover;
-    border-left: 0.3rem solid $blue;
+    border-left: 0.3rem solid $green;
     text-decoration: none;
   }
 
@@ -42,7 +42,7 @@
 
 .linkActive {
   color: $white !important;
-  border-left: 0.3rem solid $blue;
+  border-left: 0.3rem solid $green;
 }
 
 .linkIcon {
