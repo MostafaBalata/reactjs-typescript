@@ -12,7 +12,7 @@ const Hello: React.SFC<IProps> = props => (
     <br />
     Redux Test: : <b>[{props.num}]</b> :D
     <br />
-    <button className="btn btn-danger" onClick={props.onClick}>
+    <button className="btn btn-success" onClick={props.onClick}>
       Check
     </button>
   </div>

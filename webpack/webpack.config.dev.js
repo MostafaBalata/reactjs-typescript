@@ -10,7 +10,7 @@ module.exports = merge(configCommon, {
   devServer: {
     contentBase: paths.dist,
     host: "localhost",
-    port: 8080,
+    port: 8081,
     https: true,
     hot: true,
     overlay: true,
