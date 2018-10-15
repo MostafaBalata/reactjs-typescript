@@ -1,33 +1,20 @@
 // React & libs
 import * as React from "react";
-import { connect } from "react-redux";
-import { bindActionCreators } from 'redux';
-import { createStructuredSelector } from 'reselect';
+import { Route, Switch } from 'react-router-dom';
 
 // componenets
 import { Header } from "../../components/Header";
-import { Hello } from "../../components/Hello";
-
-// Actions
-import { increaseAction } from "./actions";
-
-// Selctors
-import { makeSelectMessage, makeSelectNumber } from './selectors';
-
-// Components & Containers
-import { LeftMenu } from "../LeftMenu/";
+import HomePage from '../HomePage';
 
 // Styles
 import "../../styles/main.scss";
 import * as styles from "./styles.scss";
 
-interface IProps {
-  message: string,
-  number: number,
-  increaseAction(): void
-}
+// Components & Containers
+import { LeftMenu } from "../LeftMenu/";
+import { NotFoundPage } from "../NotFoundPage";
 
-class App extends React.Component<IProps, any> {
+export class App extends React.Component {
   public render(): React.ReactNode {
     return (
       <div>
@@ -38,32 +25,17 @@ class App extends React.Component<IProps, any> {
 
             <div className={styles.well} >
               <div className="container-fluid">
-                <Hello num={this.props.number} onClick={this.props.increaseAction} />
-                <p>Saga message: {this.props.message}</p>
+
+                <Switch>
+                  <Route path="/" component={HomePage} exact />
+                  <Route path="" component={NotFoundPage} exact />
+                </Switch>
 
               </div>
             </div>
-
-          </div>
-
+          </div>ےےے
         </div>
       </div>
     );
   }
 }
-
-const mapStateToProps = createStructuredSelector({
-  message: makeSelectMessage(),
-  number: makeSelectNumber()
-});
-
-const mapDispatchToProps = (dispatch: any) => {
-  return bindActionCreators({
-    increaseAction
-  }, dispatch)
-}
-
-export default connect<any, any, any>(
-  mapStateToProps,
-  mapDispatchToProps,
-)(App);
