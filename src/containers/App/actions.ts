@@ -9,8 +9,7 @@ export enum ActionTypes {
 }
 
 /*
- * Define return types of our actions 
- * Every action returns a type and a payload
+ * Define return types of our actions
  */
 export interface IIncreaseAction {
   type: ActionTypes.INCREASE;
@@ -25,7 +24,7 @@ export interface ISagaMessageAction {
  * Define our actions creators
  * We are returning the right Action for each function
  */
-export function increase(): IIncreaseAction {
+export function increaseAction(): IIncreaseAction {
   return {
     type: ActionTypes.INCREASE,
   };
@@ -44,7 +43,7 @@ export function triggerSagaMessage(message: string): ISagaMessageAction {
 
 /*
  * Define the Action type
- * It can be one of the types defining in our action/todos file
+ * It can be one of the types defining in our action file
  * It will be useful to tell typescript about our types in our reducer
  */
 export type Action = ISagaMessageAction & IIncreaseAction;
