@@ -4,10 +4,12 @@ import * as React from "react";
 // styles
 import * as styles from './styles.scss';
 
+// helpers
+import { routes } from '../../routes';
+
 // componets
 import { LeftMenuHeader } from "../../components/LeftMenuHeader";
 import { LeftMenuLink } from "../../components/LeftMenuLink";
-
 
 export const LeftMenu: React.SFC = () => {
   return (
@@ -17,14 +19,16 @@ export const LeftMenu: React.SFC = () => {
 
       <div className={styles.leftMenuLinkContainer}>
         <ul className={styles.list} >
-          <p className={styles.title}>Services</p>
-          <LeftMenuLink content="Home" icon="home" link="/" />
-          <LeftMenuLink content="Service 1" icon="eye-dropper" link="/" />
-          <LeftMenuLink content="Service 2" icon="expand" link="/" />
-          <LeftMenuLink content="Not Found" icon="paw" link="/not-found" />
-          <p className={styles.title}>Settings</p>
-          <LeftMenuLink content="Profile" icon="expand" link="/" />
-          <LeftMenuLink content="Account" icon="eye-dropper" link="/" />
+          {
+            routes.map((route, i) => {
+              const title = <p key={i} className={styles.title}>{route.title}</p>
+              const links = route.elements.map((link, j) => {
+                return <LeftMenuLink key={j} content={link.content} icon={(link.icon as any)} link={link.link} />
+              });
+
+              return [title, links];
+            })
+          }
         </ul>
       </div>
     </div>
