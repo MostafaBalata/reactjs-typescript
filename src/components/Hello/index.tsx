@@ -1,4 +1,6 @@
 import * as React from "react";
+import { Button } from 'reactstrap';
+
 import * as styles from "./styles.scss";
 
 interface IProps {
@@ -17,9 +19,8 @@ const Hello: React.SFC<IProps> = props => (
     <h2>Sage middleware</h2>
     <p>  : : <span>{props.message}</span> : :</p>
 
-    <button className="btn btn-success" onClick={props.onClick}>
-      click
-    </button>
+    <Button color="success" onClick={props.onClick}>click</Button>
+
   </div>
 );
 
