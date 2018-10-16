@@ -4,6 +4,9 @@ import * as React from "react";
 // Styles
 import * as styles from './styles.scss';
 
+// Utils & helpers
+import { startsWith } from 'lodash';
+
 // Fonts
 import { IconProp, library } from '@fortawesome/fontawesome-svg-core'
 import { fas } from '@fortawesome/free-solid-svg-icons'
@@ -18,10 +21,14 @@ interface IProps {
   link: string
 }
 
-const LeftMenuLink: React.SFC<IProps> = ({ content, icon , link}) => {
+const LeftMenuLink: React.SFC<IProps> = ({ content, icon, link }) => {
+  const isLinkActive = startsWith(
+    window.location.pathname.replace('/', '').concat('/'),
+    link.replace('/', '').concat('/'),
+  );
   return (
     <li className={styles.item}>
-      <Link className={`${styles.link}`} to={{
+      <Link className={`${styles.link}  ${isLinkActive ? styles.linkActive : ''} `} to={{
         pathname: link,
         search: ''
       }}>
