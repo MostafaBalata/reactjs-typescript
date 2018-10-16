@@ -12,14 +12,14 @@ export const routes = [
       { "content": "Home", icon: "home", link: "/", component: HomePage },
       { "content": "ListPage", icon: "eye-dropper", link: "/list", component: ListPage },
       { "content": "Form", icon: "history", link: "/form", component: NotFoundPage },
-      { "content": "Not Found", icon: "paw", link: "", component: NotFoundPage },
+      { "content": "Not Found", icon: "paw", link: "/not-found", component: NotFoundPage },
     ]
   },
   {
     "title": "Settings",
     "elements": [
-      { "content": "Profile", icon: "expand", link: "/", component: NotFoundPage },
-      { "content": "Account", icon: "eye-dropper", link: "/", component: NotFoundPage },
+      { "content": "Profile", icon: "expand", link: "/profile", component: NotFoundPage },
+      { "content": "Account", icon: "eye-dropper", link: "/account", component: NotFoundPage },
     ]
   }
 ]
