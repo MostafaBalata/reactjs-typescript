@@ -23,4 +23,22 @@
     font-weight: 100;  
   }
 
+
+  // override table styling
+  .rt-table {
+    .rt-td {
+      font-size: $table-font-size;
+    }
+    .rt-resizable-header-content {
+      font-weight: $bold-weight;
+      font-size: $table-font-size;
+    }
+
+  }
+  .pagination-bottom {
+    .-pagination {
+      font-size: $table-font-size;
+    }
+  }
+
 }
