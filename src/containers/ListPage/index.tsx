@@ -5,42 +5,42 @@ import * as React from "react";
 import * as styles from './styles.scss';
 
 // componets
-import { Table } from 'reactstrap';
+import { Table } from '../../components/Table';
 
+export interface IListPageState {
+  data: any[],
+  columns: any
+}
 
-export const ListPage: React.SFC = () => {
-  return (
-    <div className={styles.listPage}>
-      <Table striped hover responsive>
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Username</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-          </tr>
-          <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>@fat</td>
-          </tr>
-          <tr>
-            <th scope="row">3</th>
-            <td>Larry</td>
-            <td>the Bird</td>
-            <td>@twitter</td>
-          </tr>
-        </tbody>
-      </Table>
-    </div>
-  );
+export class ListPage extends React.Component<{}, IListPageState> {
+
+  constructor(props: any) {
+    super(props);
+    this.state = {
+      data: [{
+        example: 'Sample data'
+      }],
+      columns: [
+        {
+          Header: "Example",
+          columns: [
+            {
+              Header: "Column Example",
+              accessor: "example",
+            }
+          ]
+        }
+      ]
+
+    }
+  }
+
+  public render(): React.ReactNode {
+    return (
+      <div className={styles.listPage}>
+        <Table data={this.state.data} columns={this.state.columns} />
+      </div>
+    );
+  }
+
 }
