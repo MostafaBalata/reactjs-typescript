@@ -18,10 +18,16 @@ const makeSelectColumns = (reducer: string) => createSelector(
   selecListPageReducer(reducer),
   (substate) => substate.columns,
 );
+const makeSelectLoading = (reducer: string) => createSelector(
+  selecListPageReducer(reducer),
+  (substate) => substate.loading,
+);
+
 
 export {
   selecListPageReducer,
   makeSelectRecords,
   makeSelectListCount,
-  makeSelectColumns
+  makeSelectColumns,
+  makeSelectLoading
 };

@@ -11,7 +11,7 @@ import { getColumnsFromModel } from '../../../../utils/services';
 import { schema } from '../../model';
 
 // Constants and Selectors
-import { makeSelectColumns, makeSelectListCount, makeSelectRecords } from "../../../../containers/ListPage/selectors";
+import { makeSelectColumns, makeSelectListCount, makeSelectLoading, makeSelectRecords } from "../../../../containers/ListPage/selectors";
 import { SOURCE_NAME } from "../../constants";
 
 
@@ -21,6 +21,11 @@ export class AccountDeletionListPage extends ListPage {
     super(props);
   }
 
+  public onFetchData(pageNumber: number): [] {
+    const columns = this.props.columns as [];
+    return this.props.getData(SOURCE_NAME, pageNumber, columns);
+  }
+
   public componentDidMount(): void {
     const columns = getColumnsFromModel(schema) as [];
 
@@ -28,7 +33,7 @@ export class AccountDeletionListPage extends ListPage {
     if (this.props.getData) {
 
       // This will dispatch action to redux
-      this.props.getData(SOURCE_NAME, columns);
+      this.props.getData(SOURCE_NAME, 0, columns);
     }
   }
 }
@@ -42,7 +47,8 @@ const mapDispatchToProps = (dispatch: any) => {
 const mapListPageStateToProp = createStructuredSelector({
   records: makeSelectRecords('accountDeletion'),
   number: makeSelectListCount('accountDeletion'),
-  columns: makeSelectColumns('accountDeletion')
+  columns: makeSelectColumns('accountDeletion'),
+  loading: makeSelectLoading('accountDeletion')
 });
 
 export default connect<any, any, any>(

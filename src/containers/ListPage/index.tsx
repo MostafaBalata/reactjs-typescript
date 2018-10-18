@@ -12,7 +12,7 @@ import { Table } from '../../components/Table';
 
 // selectors & reducers
 import { IPropsListPage } from "./reducers";
-import { makeSelectColumns, makeSelectListCount, makeSelectRecords } from "./selectors";
+import { makeSelectColumns, makeSelectListCount, makeSelectLoading, makeSelectRecords } from "./selectors";
 
 import { initStateListPageActionCreator } from "./actions";
 
@@ -21,6 +21,7 @@ export class ListPage extends React.Component<IPropsListPage> {
 
   constructor(props: any) {
     super(props);
+    this.onFetchData = this.onFetchData.bind(this);
   }
 
   public componentDidMount(): void {
@@ -30,11 +31,15 @@ export class ListPage extends React.Component<IPropsListPage> {
     }
   }
 
+  public onFetchData(pageNumber: number): any {
+    alert(pageNumber)
+  }
+
   public render(): React.ReactNode {
-    const { records, columns } = this.props;
+    const { records, columns, loading } = this.props;
     return (
       <div className={styles.listPage}>
-        <Table data={records} columns={columns} />
+        <Table records={records} columns={columns} loading={loading} onFetchData={this.onFetchData} />
       </div>
     );
   }
@@ -49,7 +54,8 @@ const mapDispatchToProps = (dispatch: any) => {
 const mapListPageStateToProps = createStructuredSelector({
   records: makeSelectRecords('list'),
   number: makeSelectListCount('list'),
-  columns: makeSelectColumns('list')
+  columns: makeSelectColumns('list'),
+  loading: makeSelectLoading('list')
 });
 
 export default connect<any, any, any>(

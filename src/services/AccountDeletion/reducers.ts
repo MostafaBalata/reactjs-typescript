@@ -11,13 +11,15 @@ export function accountDeletionReducer(state: IPropsListPage = initialStateListP
     case ACCOUNT_DELETION_GET_DATA:
       return {
         ...state,
-        columns: action.columns
+        columns: action.columns,
+        loading: true
       }
     case ACCOUNT_DELETION_GET_DATA_SUCCESS:
       return {
         ...state,
         records: action.records,
-        count: size(action.records)
+        count: size(action.records),
+        loading: false
       }
     default:
       return state;

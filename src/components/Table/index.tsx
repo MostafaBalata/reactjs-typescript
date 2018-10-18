@@ -3,23 +3,36 @@ import ReactTable from "react-table";
 import * as styles from './styles.scss';
 
 interface IProps {
-  data: any[],
-  columns: any
+  records: any[],
+  columns: any[],
+  loading: boolean,
+  onFetchData?: (pageNumber: number) => void
 }
 
 export class Table extends React.Component<IProps> {
-  public render(): React.ReactNode {
 
-    const { data, columns } = this.props;
+  constructor(props: any) {
+    super(props);
+    this.fetchData = this.fetchData.bind(this);
+  }
+
+  public fetchData(state: any): any {
+    this.props.onFetchData(state.page + 1);
+  }
+
+  public render(): React.ReactNode {
+    const { records, columns, loading } = this.props;
     return (<div className={styles.tablular}>
       <ReactTable
-        data={data}
+        manual
+        data={records}
         columns={columns}
+        pages={100}
+        loading={loading}
+        onFetchData={this.fetchData}
         defaultPageSize={10}
         className="-striped -highlight"
       />
-
-
     </div>);
   }
 

@@ -3,6 +3,7 @@ import { GET_DATA, GET_DATA_SUCCESS, INIT_LIST } from './constants';
 interface IListPageGetDataAction {
   type: string,
   search: string,
+  pageNumber: number,
   columns: [],
 }
 
@@ -19,10 +20,11 @@ interface IInitList {
 export type TAction = IListPageGetDataAction & IListPageGetDataSuccessAction;
 
 // Action creators
-export function getDataListPageActionCreator(source: string, columns: [], search: string = "*"): IListPageGetDataAction {
+export function getDataListPageActionCreator(source: string, pageNumber: number, columns: [], search: string = "*"): IListPageGetDataAction {
   return {
     type: `${source}/${GET_DATA}`,
     columns,
+    pageNumber,
     search
   };
 }
