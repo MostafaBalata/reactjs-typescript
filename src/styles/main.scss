@@ -17,12 +17,28 @@
   * {
     -webkit-font-smoothing: antialiased;
   }
-  
+
+  body {
+    background-color: #fafafb;
+  }
+
+  p {
+    color: $gray;
+    font-size: $table-font-size;
+  }
+
   .big-title {
     font-size: 15rem;
     font-weight: 100;  
   }
 
+  .block {
+    background-color: $white;
+    padding: $normal-space;
+    border-radius: 2px;
+    box-shadow: 0 2px 4px #e3e9f3;
+    margin-bottom: $normal-space; 
+  }
 
   // override table styling
   .rt-table {

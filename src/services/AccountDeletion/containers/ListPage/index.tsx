@@ -1,60 +1,51 @@
 // React & libs
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { createStructuredSelector } from "reselect";
 
-
-// styles
-
-// Utils & helpers
-import * as faker from 'faker';
-import { mergeTwoArrays, range } from "../../../../utils";
-import { columns } from "./tableSchema";
+import { getDataListPageActionCreator } from '../../../../containers/ListPage/actions';
 
 // componets
 import { ListPage } from '../../../../containers/ListPage';
+import { getColumnsFromModel } from '../../../../utils/services';
+import { schema } from '../../model';
 
-interface IAccountDeletion {
-  name: string,
-  id: number
-}
+// Constants and Selectors
+import { makeSelectColumns, makeSelectListCount, makeSelectRecords } from "../../../../containers/ListPage/selectors";
+import { SOURCE_NAME } from "../../constants";
 
-interface IStateAccountDeletion {
-  rows: [IAccountDeletion]
-}
 
 export class AccountDeletionListPage extends ListPage {
 
-  constructor(props: IStateAccountDeletion) {
+  constructor(props: any) {
     super(props);
   }
 
-  public componentWillUnmount(): void {
-    // tslint:disable-next-line
-    const data: [] = []
-    this.setState({ data })
-  }
+  public componentDidMount(): void {
+    const columns = getColumnsFromModel(schema) as [];
 
-  public getPerson(): any {
-    return {
-      firstName: faker.name.firstName(),
-      lastName: faker.name.lastName(),
-      age: faker.random.number(90),
-      visits: 10,
-      progress: 100,
-      status: 'completed'
+    // We check if getData exists or not, because it's an optional field
+    if (this.props.getData) {
+
+      // This will dispatch action to redux
+      this.props.getData(SOURCE_NAME, columns);
     }
   }
-
-  public componentDidMount(): void {
-    this.setState({ columns });
-    
-    setTimeout(() => {
-      const people: any = range(500).map(() => {
-        return {
-          ...this.getPerson(),
-        };
-      });
-      this.setState({
-        data: mergeTwoArrays(this.state.data, people),
-      });
-    }, 1000)
-  }
 }
+
+const mapDispatchToProps = (dispatch: any) => {
+  return bindActionCreators({
+    getData: getDataListPageActionCreator
+  }, dispatch)
+}
+
+const mapListPageStateToProp = createStructuredSelector({
+  records: makeSelectRecords('accountDeletion'),
+  number: makeSelectListCount('accountDeletion'),
+  columns: makeSelectColumns('accountDeletion')
+});
+
+export default connect<any, any, any>(
+  mapListPageStateToProp,
+  mapDispatchToProps,
+)(AccountDeletionListPage);

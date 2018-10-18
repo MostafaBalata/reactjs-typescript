@@ -29,14 +29,12 @@ export class App extends React.Component {
 
             <div className={styles.well} >
               <div className="container-fluid">
-                <h1>Page title</h1>
                 <Switch>
                   {map(getRoutes(), (route, index) => <Route key={index} path={route.link} component={route.component} exact />)}
                 </Switch>
-
               </div>
             </div>
-          </div>ےےے
+          </div>
         </div>
       </div>
     );
