@@ -1,3 +1,5 @@
+import { camelCase } from 'lodash';
+
 export const mergeTwoArrays = (array1: any, array2: any) => [].concat.apply(array1, array2);
 
 export const range = (len: number) => {
@@ -7,3 +9,5 @@ export const range = (len: number) => {
   }
   return arr;
 };
+
+export const getPathNameCamleCase = () => camelCase(window.location.pathname.replace('/', ''))

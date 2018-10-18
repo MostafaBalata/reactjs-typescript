@@ -1,9 +1,13 @@
 import { effects, SagaIterator } from "redux-saga";
 
 import { appSaga } from "./containers/HomePage/saga";
+import { accountDeletionSaga } from "./services/AccountDeletion/saga";
 
 function* sagas(): SagaIterator {
-  yield effects.all([effects.fork(appSaga)]);
+  yield effects.all([
+    effects.fork(appSaga),
+    effects.fork(accountDeletionSaga)
+  ]);
 }
 
 function* mainSaga(): SagaIterator {
