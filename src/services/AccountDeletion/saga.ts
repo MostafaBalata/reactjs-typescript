@@ -7,11 +7,11 @@ import { slice } from 'lodash';
 import { data } from './mocked';
 
 // Actions
-import { getDataSuccessListPageActionCreator } from "../../containers/ListPage/actions";
+import { getDataSuccessListPageActionCreator, TAction } from "../../containers/ListPage/actions";
 import { ACCOUNT_DELETION_GET_DATA, SOURCE_NAME } from "./constants";
 
 
-function* dispatchGetDataSuccess(action: any): SagaIterator {
+function* dispatchGetDataSuccess(action: TAction): any {
   // @TODO: Fix the limit
   try {
     const records = slice(data, action.pageNumber, 10) as [];

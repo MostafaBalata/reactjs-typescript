@@ -17,7 +17,9 @@ export class Table extends React.Component<IProps> {
   }
 
   public fetchData(state: any): any {
-    this.props.onFetchData(state.page + 1);
+    if (this.props.onFetchData) {
+      this.props.onFetchData((state.page as number) + 1);
+    }
   }
 
   public render(): React.ReactNode {

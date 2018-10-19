@@ -1,6 +1,6 @@
 import { GET_DATA, GET_DATA_SUCCESS, INIT_LIST } from './constants';
 
-interface IListPageGetDataAction {
+export interface IListPageGetDataAction {
   type: string,
   search: string,
   pageNumber: number,

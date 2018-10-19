@@ -23,7 +23,11 @@ export class AccountDeletionListPage extends ListPage {
 
   public onFetchData(pageNumber: number): [] {
     const columns = this.props.columns as [];
-    return this.props.getData(SOURCE_NAME, pageNumber, columns);
+    if (this.props.getData) {
+      return this.props.getData(SOURCE_NAME, pageNumber, columns);
+    }
+    const errorMessage: string = "Function is not defnied";
+    throw new Error(`Unexpected Error: ${errorMessage}`)
   }
 
   public componentDidMount(): void {
