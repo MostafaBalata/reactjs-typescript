@@ -43,7 +43,6 @@ export class ListPage extends React.Component<IPropsListPage> {
     const column = { columns: [{ ...action }] };
     this.columns.push(column as never);
 
-
     if (this.props.initList) {
       // Erease the table
       this.props.initList('')
@@ -57,7 +56,6 @@ export class ListPage extends React.Component<IPropsListPage> {
     }
 
   }
-
 
   public onFetchData(pageNumber: number): [] {
     const columns = this.props.columns as [];

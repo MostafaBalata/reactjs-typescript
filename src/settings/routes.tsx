@@ -1,10 +1,12 @@
 import { flattenDeep, map } from 'lodash';
 
-import { FormPage } from './containers/FormPage';
-import HomePage from './containers/HomePage';
-import { NotFoundPage } from "./containers/NotFoundPage";
-import AccountDeletionFormPage from './services/AccountDeletion/containers/FormPage';
-import AccountDeletionListPage from './services/AccountDeletion/containers/ListPage';
+import { FormPage } from '../containers/FormPage';
+import HomePage from '../containers/HomePage';
+import { NotFoundPage } from "../containers/NotFoundPage";
+import AccountDeletionFormPage from '../modules/AccountDeletion/containers/FormPage';
+import AccountDeletionListPage from '../modules/AccountDeletion/containers/ListPage';
+
+import { makeLink } from './utils'
 
 interface ILink {
   link: string,
@@ -43,13 +45,6 @@ export const routes: IRoute[] = [
     ]
   }
 ]
-
-
-
-const makeLink = (link: string, content: string, component: any) => {
-  return { link, content, component }
-}
-
 
 // function to setup the routes
 export function getRoutes(): ILink[] {

@@ -6,7 +6,7 @@ import { combineReducers, Reducer } from "redux";
 
 import { homePageReducer } from "./containers/HomePage/reducers";
 import { listPageReducer } from "./containers/ListPage/reducers";
-import { accountDeletionFormReducer, accountDeletionListReducer } from "./services/AccountDeletion/reducers";
+import { accountDeletionFormReducer, accountDeletionListReducer } from "./modules/AccountDeletion/reducers";
 
 /**
  * Creates the main reducer with the dynamically injected ones

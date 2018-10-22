@@ -7,9 +7,13 @@ import Form from "react-jsonschema-form";
 // Components
 import { Button } from 'reactstrap';
 
-// componets
+interface IFormPageState {
+  uniqueId: string,
+  moduleName: string, // module Name
+  sourceName: string, // Is prefix for reducers name
+}
 
-export class FormPage extends React.Component<any, any> {
+export class FormPage extends React.Component<any, IFormPageState> {
 
   // Data skeleton
   public schema: {} = {};
@@ -18,14 +22,36 @@ export class FormPage extends React.Component<any, any> {
   // The service name
   public sourceName: string = "";
 
+
   constructor(props: any) {
     super(props);
+    this.onDelete = this.onDelete.bind(this);
   }
 
   public componentDidMount(): void {
-    const id = this.props.match.params.id;
-    this.props.findOne(this.sourceName, id);
+    const uniqueId = this.props.match.params.id;
+    const { findOne } = this.props;
+
+
+    this.setState({
+      uniqueId,
+      sourceName: this.sourceName,
+      moduleName: this.sourceName,
+    })
+    findOne(this.sourceName, uniqueId);
     this.form = this.props.form;
+    
+  }
+
+  public onDelete(): void {
+    const { uniqueId } = this.state;
+    const { deleteOne } = this.props;
+
+    if (deleteOne) {
+      deleteOne(this.sourceName, uniqueId);
+    } else {
+      throw new Error("Delete method is not supported.")
+    }
   }
 
   public render(): React.ReactNode {
@@ -49,7 +75,7 @@ export class FormPage extends React.Component<any, any> {
             <h3>Actions</h3>
 
             <div>
-              <Button outline color="danger">Delete</Button>{' '}
+              <Button outline color="danger" onClick={this.onDelete}>Delete</Button>{' '}
               <Button outline color="success">Success</Button>{' '}
               <Button outline color="info">Info</Button>{' '}
             </div>

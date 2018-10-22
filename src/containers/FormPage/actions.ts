@@ -1,28 +1,42 @@
-import { GET_ONE_RECORD, GET_ONE_RECORD_SUCCESS } from './constants';
+import { DELETE_ONE_RECORD, DELETE_ONE_RECORD_SUCCESS, GET_ONE_RECORD, GET_ONE_RECORD_SUCCESS } from './constants';
 
 interface IFormRequestAction {
   type: string,
-  id: string, // @TODO: not sure if the id will be string.
+  payload: string, // @TODO: not sure if the id will be string.
 }
 
 interface IFormResponseAction {
   type: string,
-  form: any, // @TODO: not sure if the id will be string.
+  payload: any, // @TODO: not sure if the id will be string.
 }
 export type TFormPageAction = IFormRequestAction & IFormResponseAction;
 
 // Action creators
-export function findOneActionCreator(source: string, id: string): IFormRequestAction {
+export function findOneActionCreator(source: string, payload: string): IFormRequestAction {
   return {
     type: `${source}/${GET_ONE_RECORD}`,
-    id
+    payload
   }
 }
 
 // Action creators
-export function findOneSuccessActionCreator(source: string, form: any): IFormResponseAction {
+export function findOneSuccessActionCreator(source: string, payload: any): IFormResponseAction {
   return {
     type: `${source}/${GET_ONE_RECORD_SUCCESS}`,
-    form
+    payload
+  }
+}
+
+export function deleteOneActionCreator(source: string, payload: string): IFormRequestAction {
+  return {
+    type: `${source}/${DELETE_ONE_RECORD}`,
+    payload
+  }
+}
+
+export function deleteOneSuccessActionCreator(source: string, payload: string): IFormRequestAction {
+  return {
+    type: `${source}/${DELETE_ONE_RECORD_SUCCESS}`,
+    payload
   }
 }

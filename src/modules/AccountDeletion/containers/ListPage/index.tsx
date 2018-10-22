@@ -15,7 +15,7 @@ import { makeSelectColumns, makeSelectListCount, makeSelectLoading, makeSelectRe
 import { SOURCE_NAME, SOURCE_NAME_URL } from "../../constants";
 
 
-export class AccountDeletionListPage extends ListPage {
+class AccountDeletionListPage extends ListPage {
 
   constructor(props: any) {
     super(props);

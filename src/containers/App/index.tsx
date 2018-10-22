@@ -11,7 +11,7 @@ import * as styles from "./styles.scss";
 
 // utils
 import { map } from 'lodash';
-import { getRoutes } from "../../routes"
+import { getRoutes } from "../../settings/routes"
 
 // Components & Containers
 import { LeftMenu } from "../LeftMenu/";

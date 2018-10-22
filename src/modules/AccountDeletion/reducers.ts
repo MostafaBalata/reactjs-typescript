@@ -1,7 +1,7 @@
 import { size } from 'lodash';
 
 import { TAction } from '../../containers/ListPage/actions';
-import { ACCOUNT_DELETION_GET_DATA, ACCOUNT_DELETION_GET_DATA_SUCCESS, ACCOUNT_DELETION_GET_ONE_RECORD_SUCCESS } from './constants';
+import { ACCOUNT_DELETION_DELETE_ONE_SUCCESS, ACCOUNT_DELETION_GET_DATA, ACCOUNT_DELETION_GET_DATA_SUCCESS, ACCOUNT_DELETION_GET_ONE_RECORD_SUCCESS } from './constants';
 
 import { initialStateListPage, IPropsListPage } from '../../containers/ListPage/reducers';
 
@@ -45,7 +45,9 @@ const initialStateFormPage = {
 export function accountDeletionFormReducer(state = initialStateFormPage, action: TFormPageAction): any {
   switch (action.type) {
     case ACCOUNT_DELETION_GET_ONE_RECORD_SUCCESS:
-      return { ...state, form: action.form }
+      return { ...state, form: action.payload }
+    case ACCOUNT_DELETION_DELETE_ONE_SUCCESS:
+      return { ...state }
     default:
       return state;
   }

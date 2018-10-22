@@ -6,8 +6,7 @@ const selecListPageReducer = (reducer: string) => (state: any) => state[reducer]
 // Selectors
 const selectFormData = (reducer: string) => (state: any) => state[reducer].form;
 
-
-
+// Selectors Makers
 const makeSelectRecords = (reducer: string) => createSelector(
   selecListPageReducer(reducer),
   (substate) => substate.records,
@@ -32,6 +31,7 @@ const makeSelectForm = (reducer: string) => createSelector(
   selecListPageReducer(reducer),
   (substate) => substate.form
 )
+
 export {
   selecListPageReducer,
   makeSelectRecords,

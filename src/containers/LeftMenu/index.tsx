@@ -5,7 +5,7 @@ import * as React from "react";
 import * as styles from './styles.scss';
 
 // helpers
-import { routes } from '../../routes';
+import { routes } from '../../settings/routes';
 
 // componets
 import { LeftMenuHeader } from "../../components/LeftMenuHeader";
