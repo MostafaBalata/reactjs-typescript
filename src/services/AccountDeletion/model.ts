@@ -1,11 +1,12 @@
 import { JSONSchema6 } from "json-schema";
 
 export const schema: JSONSchema6 = {
+  title: 'Account Deletion',
   properties: {
     status: {
-      type: "string",
+      type: "boolean",
       title: "Status",
-      default: "Ready"
+      default: false
     },
     trackId: {
       type: "string",
@@ -13,7 +14,7 @@ export const schema: JSONSchema6 = {
     },
     jiraTrackId: {
       type: "string",
-      title: "Track Id"
+      title: "Jira Track Id"
     },
     creator: {
       type: "string",
@@ -27,5 +28,5 @@ export const schema: JSONSchema6 = {
       type: "string",
       title: "Camunda Id"
     }
-  }
+  },
 }

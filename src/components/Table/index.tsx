@@ -24,6 +24,7 @@ export class Table extends React.Component<IProps> {
 
   public render(): React.ReactNode {
     const { records, columns, loading } = this.props;
+
     return (<div className={styles.tablular}>
       <ReactTable
         manual

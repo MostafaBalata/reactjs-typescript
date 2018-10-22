@@ -4,6 +4,10 @@ import { createSelector } from 'reselect';
 const selecListPageReducer = (reducer: string) => (state: any) => state[reducer];
 
 // Selectors
+const selectFormData = (reducer: string) => (state: any) => state[reducer].form;
+
+
+
 const makeSelectRecords = (reducer: string) => createSelector(
   selecListPageReducer(reducer),
   (substate) => substate.records,
@@ -23,11 +27,17 @@ const makeSelectLoading = (reducer: string) => createSelector(
   (substate) => substate.loading,
 );
 
-
+// Form
+const makeSelectForm = (reducer: string) => createSelector(
+  selecListPageReducer(reducer),
+  (substate) => substate.form
+)
 export {
   selecListPageReducer,
   makeSelectRecords,
   makeSelectListCount,
   makeSelectColumns,
-  makeSelectLoading
+  makeSelectLoading,
+  makeSelectForm,
+  selectFormData
 };

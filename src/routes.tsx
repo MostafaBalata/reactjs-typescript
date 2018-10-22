@@ -2,23 +2,35 @@ import { flattenDeep, map } from 'lodash';
 
 import { FormPage } from './containers/FormPage';
 import HomePage from './containers/HomePage';
-import ListPage from "./containers/ListPage";
 import { NotFoundPage } from "./containers/NotFoundPage";
+import AccountDeletionFormPage from './services/AccountDeletion/containers/FormPage';
 import AccountDeletionListPage from './services/AccountDeletion/containers/ListPage';
 
+interface ILink {
+  link: string,
+  content: string,
+  icon: string,
+  component: any,
+  formComponent?: any
+}
+
+export interface IRoute {
+  title: string,
+  elements: ILink[]
+}
+
 // TODO: should fetch data from server
-export const routes = [
+export const routes: IRoute[] = [
   {
     "title": "Services",
     "elements": [
-      { "content": "Account Deletion", icon: "trash", link: "/account-deletion", component: AccountDeletionListPage },
+      { "content": "Account Deletion", icon: "trash", link: "/account-deletion", component: AccountDeletionListPage, formComponent: AccountDeletionFormPage },
     ]
   },
   {
     "title": "General",
     "elements": [
       { "content": "Home", icon: "home", link: "/", component: HomePage },
-      { "content": "List", icon: "eye-dropper", link: "/list", component: ListPage },
       { "content": "Form", icon: "history", link: "/form", component: FormPage },
       { "content": "Not Found", icon: "paw", link: "/not-found", component: NotFoundPage },
     ]
@@ -32,20 +44,25 @@ export const routes = [
   }
 ]
 
-interface ILink {
-  link: string,
-  content: string,
-  component: any
-}
+
 
 const makeLink = (link: string, content: string, component: any) => {
   return { link, content, component }
 }
 
+
+// function to setup the routes
 export function getRoutes(): ILink[] {
-  const flattenRoutes = flattenDeep(map(routes, (route) => route.elements));
+  const flattenRoutes = flattenDeep(map(routes, (route) => route.elements) as []);
 
-  const output = map(flattenRoutes, (element: ILink) => makeLink(element.link, element.content, element.component));
+  const forms: any[] = [];
 
-  return (output as []);
+  const output = map(flattenRoutes, (element: ILink) => {
+    if (element.formComponent) {
+      forms.push(makeLink(`${element.link}/:id`, element.content, element.formComponent));
+    }
+    return makeLink(element.link, element.content, element.component);
+  });
+
+  return ([].concat.apply(output, forms) as []);
 }

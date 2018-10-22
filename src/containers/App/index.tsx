@@ -16,7 +16,6 @@ import { getRoutes } from "../../routes"
 // Components & Containers
 import { LeftMenu } from "../LeftMenu/";
 
-import '../../mocks/services';
 
 export class App extends React.Component {
   public render(): React.ReactNode {

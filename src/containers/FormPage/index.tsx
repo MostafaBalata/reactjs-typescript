@@ -1,45 +1,41 @@
 // React & libs
 import * as React from "react";
 
-import { JSONSchema6 } from "json-schema";
 
 import Form from "react-jsonschema-form";
-
-// styles
 
 // Components
 import { Button } from 'reactstrap';
 
 // componets
 
-const schema: JSONSchema6 = {
-  title: "Todo",
-  type: "object",
-  required: ["title"],
-  properties: {
-    title: { type: "string", title: "Title", default: "A new task" },
-    firstName: {
-      type: "string",
-      title: "First name",
-      default: "Mostafa"
-    },
+export class FormPage extends React.Component<any, any> {
 
-    done: { type: "boolean", title: "Done?", default: false }
-  }
-};
-
-export class FormPage extends React.Component<{}, any> {
+  // Data skeleton
+  public schema: {} = {};
+  // Form data values
+  public form: {} = {};
+  // The service name
+  public sourceName: string = "";
 
   constructor(props: any) {
     super(props);
   }
 
+  public componentDidMount(): void {
+    const id = this.props.match.params.id;
+    this.props.findOne(this.sourceName, id);
+    this.form = this.props.form;
+  }
+
   public render(): React.ReactNode {
+    const { form } = this.props;
     return (
       <div className="row">
         <div className="col-md-6">
           <div className="block">
-            <Form schema={schema}
+            <Form schema={this.schema}
+              formData={form}
               // tslint:disable-next-line
               onChange={console.log}
               // tslint:disable-next-line

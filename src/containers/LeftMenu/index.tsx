@@ -22,9 +22,7 @@ export const LeftMenu: React.SFC = () => {
           {
             routes.map((route, i) => {
               const title = <p key={i} className={styles.title}>{route.title}</p>
-              const links = route.elements.map((link, j) => {
-                return <LeftMenuLink key={j} content={link.content} icon={(link.icon as any)} link={link.link} />
-              });
+              const links = route.elements.map((link, j) => <LeftMenuLink key={j} content={link.content} icon={(link.icon as any)} link={link.link} />);
 
               return [title, links];
             })

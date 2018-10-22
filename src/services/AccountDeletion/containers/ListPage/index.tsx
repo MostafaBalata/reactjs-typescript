@@ -12,34 +12,18 @@ import { schema } from '../../model';
 
 // Constants and Selectors
 import { makeSelectColumns, makeSelectListCount, makeSelectLoading, makeSelectRecords } from "../../../../containers/ListPage/selectors";
-import { SOURCE_NAME } from "../../constants";
+import { SOURCE_NAME, SOURCE_NAME_URL } from "../../constants";
 
 
 export class AccountDeletionListPage extends ListPage {
 
   constructor(props: any) {
     super(props);
+    this.columns = getColumnsFromModel(schema) as [];
+    this.sourceNameUrl = SOURCE_NAME_URL;
+    this.sourceName = SOURCE_NAME;
   }
 
-  public onFetchData(pageNumber: number): [] {
-    const columns = this.props.columns as [];
-    if (this.props.getData) {
-      return this.props.getData(SOURCE_NAME, pageNumber, columns);
-    }
-    const errorMessage: string = "Function is not defnied";
-    throw new Error(`Unexpected Error: ${errorMessage}`)
-  }
-
-  public componentDidMount(): void {
-    const columns = getColumnsFromModel(schema) as [];
-
-    // We check if getData exists or not, because it's an optional field
-    if (this.props.getData) {
-
-      // This will dispatch action to redux
-      this.props.getData(SOURCE_NAME, 0, columns);
-    }
-  }
 }
 
 const mapDispatchToProps = (dispatch: any) => {
@@ -48,14 +32,14 @@ const mapDispatchToProps = (dispatch: any) => {
   }, dispatch)
 }
 
-const mapListPageStateToProp = createStructuredSelector({
-  records: makeSelectRecords('accountDeletion'),
-  number: makeSelectListCount('accountDeletion'),
-  columns: makeSelectColumns('accountDeletion'),
-  loading: makeSelectLoading('accountDeletion')
+const mapListPageStateToProp = (reducerName: string) => createStructuredSelector({
+  records: makeSelectRecords(reducerName),
+  number: makeSelectListCount(reducerName),
+  columns: makeSelectColumns(reducerName),
+  loading: makeSelectLoading(reducerName)
 });
 
 export default connect<any, any, any>(
-  mapListPageStateToProp,
+  mapListPageStateToProp('accountDeletionListReducer'),
   mapDispatchToProps,
 )(AccountDeletionListPage);
