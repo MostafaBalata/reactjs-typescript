@@ -46,7 +46,7 @@
       true,
       "call-signature"
     ],
-    "ordered-imports": true,
+    "ordered-imports": false,
     "no-commented-code": true,
     "no-submodule-imports": false,
     "no-use-before-declare": false

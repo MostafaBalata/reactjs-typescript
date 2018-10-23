@@ -1,0 +1,5 @@
+export const GET_ONE_RECORD: string = `FORM_PAGE/GET_ONE`;
+export const GET_ONE_RECORD_SUCCESS: string = `FORM_PAGE/GET_ONE/SUCCESS`;
+
+export const DELETE_ONE_RECORD: string = `FORM_PAGE/DELETE_ONE`;
+export const DELETE_ONE_RECORD_SUCCESS: string = `FORM_PAGE/DELETE_ONE_SUCCESS`;

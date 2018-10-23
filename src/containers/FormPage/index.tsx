@@ -1,45 +1,67 @@
 // React & libs
 import * as React from "react";
 
-import { JSONSchema6 } from "json-schema";
 
 import Form from "react-jsonschema-form";
-
-// styles
 
 // Components
 import { Button } from 'reactstrap';
 
-// componets
+interface IFormPageState {
+  uniqueId: string,
+  moduleName: string, // module Name
+  sourceName: string, // Is prefix for reducers name
+}
 
-const schema: JSONSchema6 = {
-  title: "Todo",
-  type: "object",
-  required: ["title"],
-  properties: {
-    title: { type: "string", title: "Title", default: "A new task" },
-    firstName: {
-      type: "string",
-      title: "First name",
-      default: "Mostafa"
-    },
+export class FormPage extends React.Component<any, IFormPageState> {
 
-    done: { type: "boolean", title: "Done?", default: false }
-  }
-};
+  // Data skeleton
+  public schema: {} = {};
+  // Form data values
+  public form: {} = {};
+  // The service name
+  public sourceName: string = "";
 
-export class FormPage extends React.Component<{}, any> {
 
   constructor(props: any) {
     super(props);
+    this.onDelete = this.onDelete.bind(this);
+  }
+
+  public componentDidMount(): void {
+    const uniqueId = this.props.match.params.id;
+    const { findOne } = this.props;
+
+
+    this.setState({
+      uniqueId,
+      sourceName: this.sourceName,
+      moduleName: this.sourceName,
+    })
+    findOne(this.sourceName, uniqueId);
+    this.form = this.props.form;
+
+  }
+
+  public onDelete(): void {
+    const { uniqueId } = this.state;
+    const { deleteOne } = this.props;
+
+    if (deleteOne) {
+      deleteOne(this.sourceName, uniqueId);
+    } else {
+      throw new Error("Delete method is not supported.")
+    }
   }
 
   public render(): React.ReactNode {
+    const { form } = this.props;
     return (
       <div className="row">
         <div className="col-md-6">
           <div className="block">
-            <Form schema={schema}
+            <Form schema={this.schema}
+              formData={form}
               // tslint:disable-next-line
               onChange={console.log}
               // tslint:disable-next-line
@@ -53,7 +75,7 @@ export class FormPage extends React.Component<{}, any> {
             <h3>Actions</h3>
 
             <div>
-              <Button outline color="danger">Delete</Button>{' '}
+              <Button outline color="danger" onClick={this.onDelete}>Delete</Button>{' '}
               <Button outline color="success">Success</Button>{' '}
               <Button outline color="info">Info</Button>{' '}
             </div>

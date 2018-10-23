@@ -1,3 +1,5 @@
+import { JSONSchema6 } from "json-schema";
+
 interface IProperty {
   type: string,
   title: string,
@@ -15,6 +17,14 @@ export const getColumnsFromModel = (model: any) => {
         accessor: key
       }]
     };
-  })
+  });
+}
 
+export const getFormSchemaFromModel = (model: JSONSchema6) => {
+  return {
+    title: model.title,
+    type: "object",
+    properties: model.properties,
+    done: { type: "boolean", title: "Done?", default: false }
+  }
 }

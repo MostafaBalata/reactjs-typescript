@@ -6,14 +6,17 @@ export interface IPropsListPage {
   records: any[],
   columns: any[],
   count: number,
-  getData?: (sourceName: string, columns: []) => [],
-  initList?: (sourceName: string) => void
+  loading: boolean,
+  getData?: (sourceName: string, pageNumber: number, columns: []) => [],
+  initList?: (sourceName: string) => void,
+  getNextPage?: (pageNumber: number) => []
 }
 
 export const initialStateListPage: IPropsListPage = {
   records: [{}],
   columns: [],
-  count: 0
+  count: 0,
+  loading: false
 }
 
 export function listPageReducer(state: IPropsListPage = initialStateListPage, action: TAction): IPropsListPage {
@@ -23,7 +26,8 @@ export function listPageReducer(state: IPropsListPage = initialStateListPage, ac
         ...state,
         records: initialStateListPage.records,
         columns: initialStateListPage.columns,
-        count: initialStateListPage.count
+        count: initialStateListPage.count,
+        loading: false
       }
     default:
       return state;
