@@ -2,42 +2,56 @@ import { GET_DATA, GET_DATA_SUCCESS, INIT_LIST } from './constants';
 
 export interface IListPageGetDataAction {
   type: string,
-  search: string,
-  pageNumber: number,
-  columns: [],
+  moduleName: string,
+  payload: {
+    search: string,
+    pageNumber: number,
+    columns: [],
+  }
 }
 
 interface IListPageGetDataSuccessAction {
   type: string,
-  records: []
+  moduleName: string,
+  payload: {
+    records: []
+  }
 }
 
 interface IInitList {
   type: string
+  moduleName: string,
 }
 
 
 export type TAction = IListPageGetDataAction & IListPageGetDataSuccessAction;
 
 // Action creators
-export function getDataListPageActionCreator(source: string, pageNumber: number, columns: [], search: string = "*"): IListPageGetDataAction {
+export function getDataListPageActionCreator(moduleName: string, pageNumber: number, columns: [], search: string = "*"): IListPageGetDataAction {
   return {
-    type: `${source}/${GET_DATA}`,
-    columns,
-    pageNumber,
-    search
+    type: `${moduleName}/${GET_DATA}`,
+    moduleName,
+    payload: {
+      columns,
+      pageNumber,
+      search
+    }
   };
 }
 
-export function getDataSuccessListPageActionCreator(source: string, records: []): IListPageGetDataSuccessAction {
+export function getDataSuccessListPageActionCreator(moduleName: string, records: []): IListPageGetDataSuccessAction {
   return {
-    type: `${source}/${GET_DATA_SUCCESS}`,
-    records
+    type: `${moduleName}/${GET_DATA_SUCCESS}`,
+    moduleName,
+    payload: {
+      records
+    }
   };
 }
 
-export function initStateListPageActionCreator(source: string): IInitList {
+export function initStateListPageActionCreator(moduleName: string): IInitList {
   return {
-    type: `${source}/${INIT_LIST}`
+    type: `${moduleName}/${INIT_LIST}`,
+    moduleName
   }
 }

@@ -40,7 +40,7 @@ export class FormPage extends React.Component<any, IFormPageState> {
     })
     findOne(this.sourceName, uniqueId);
     this.form = this.props.form;
-    
+
   }
 
   public onDelete(): void {

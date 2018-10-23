@@ -1,5 +1,9 @@
-export const SERVICE_NAME: string = "AccountDeletion";
+// TODO: modify names
+export const ACCOUNT_DELETION_MODULE_NAME: string = "AccountDeletion";
+export const ACCOUNT_DELETION_MODULE_URL: string = "account-deletion";
+
 export const SOURCE_NAME: string = "ACCOUNT_DELETION";
+export const ACCOUNT_DELETION_SOURCE_NAME: string = SOURCE_NAME;
 export const SOURCE_NAME_URL: string = "account-deletion";
 // List Page
 export const ACCOUNT_DELETION_GET_DATA: string = `${SOURCE_NAME}/LIST_PAGE/GET_DATA`;
