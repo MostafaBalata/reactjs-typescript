@@ -3,16 +3,16 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { createStructuredSelector } from "reselect";
 
-import { getDataListPageActionCreator } from '../../../../containers/ListPage/actions';
+import { getDataListPageActionCreator } from '../../../containers/ListPage/actions';
 
 // componets
-import { ListPage } from '../../../../containers/ListPage';
-import { getColumnsFromModel } from '../../../../utils/services';
-import { schema } from '../../model';
+import { ListPage } from '../../../containers/ListPage';
+import { getColumnsFromModel } from '../../../utils/services';
+import { schema } from '../model';
 
 // Constants and Selectors
-import { makeSelectColumns, makeSelectListCount, makeSelectLoading, makeSelectRecords } from "../../../../containers/ListPage/selectors";
-import { SOURCE_NAME, SOURCE_NAME_URL } from "../../constants";
+import { makeSelectColumns, makeSelectListCount, makeSelectLoading, makeSelectRecords } from "../../../containers/ListPage/selectors";
+import { SOURCE_NAME, SOURCE_NAME_URL } from "../constants";
 
 
 class AccountDeletionListPage extends ListPage {
