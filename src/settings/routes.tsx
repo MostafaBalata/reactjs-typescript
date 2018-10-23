@@ -1,6 +1,5 @@
 import { flattenDeep, map } from 'lodash';
 
-import { FormPage } from '../containers/FormPage';
 import HomePage from '../containers/HomePage';
 import { NotFoundPage } from "../containers/NotFoundPage";
 
@@ -31,7 +30,6 @@ export const routes: IRoute[] = [
     "title": "General",
     "elements": [
       { "content": "Home", icon: "home", link: "/", component: HomePage },
-      { "content": "Form", icon: "history", link: "/form", component: FormPage },
       { "content": "Not Found", icon: "paw", link: "/not-found", component: NotFoundPage },
     ]
   },

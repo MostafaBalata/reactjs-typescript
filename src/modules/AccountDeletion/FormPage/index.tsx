@@ -3,17 +3,17 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from "redux";
 import { createStructuredSelector } from "reselect";
 
-import { SOURCE_NAME } from "../../constants";
+import { SOURCE_NAME } from "../constants";
 
 // componets
-import { FormPage } from "../../../../containers/FormPage";
+import { FormPage } from "../../../containers/FormPage";
 
-import { schema as model } from '../../model';
+import { schema as model } from '../model';
 
-import { deleteOneActionCreator, findOneActionCreator } from "../../../../containers/FormPage/actions";
-import { getFormSchemaFromModel } from "../../../../utils/services";
+import { deleteOneActionCreator, findOneActionCreator } from "../../../containers/FormPage/actions";
+import { getFormSchemaFromModel } from "../../../utils/services";
 
-import { makeSelectForm } from "../../../../containers/ListPage/selectors";
+import { makeSelectForm } from "../../../containers/ListPage/selectors";
 
 class AccountDeletionFormPage extends FormPage {
 

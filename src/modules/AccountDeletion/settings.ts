@@ -10,12 +10,13 @@ import { AccountDeletionSercviceProvider } from "./ApiServiceProvider";
 import { accountDeletionFormReducer, accountDeletionListReducer } from "./reducers";
 
 // Modules Containers
-import AccountDeletionFormPage from './containers/FormPage';
-import AccountDeletionListPage from './containers/ListPage';
+import AccountDeletionFormPage from './FormPage';
+import AccountDeletionListPage from './ListPage';
 
 /***
  * Saga forks
  */
+
 export const sagas: ForkEffect[] = [
   effects.fork(accountDeletionSaga),
 ]
