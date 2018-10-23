@@ -1,6 +1,5 @@
-import { ACCOUNT_DELETION_SOURCE_NAME } from "../modules/AccountDeletion/constants";
-import { AccountDeletionSercviceProvider } from "../modules/AccountDeletion/ApiServiceProvider";
 import { IHttpResponse } from "./IHttpClient";
+import { getServiceFactory } from "../settings";
 
 export interface IServiceProvider {
   get: (id: string) => Promise<IHttpResponse<any>>;
@@ -14,11 +13,6 @@ export interface IServiceProvider {
  */
 export class ServiceProviderFactory {
   public static load(moduleName: string): IServiceProvider {
-    switch (moduleName) {
-      case ACCOUNT_DELETION_SOURCE_NAME:
-        return new AccountDeletionSercviceProvider();
-      default:
-        throw new Error(`${moduleName} is not supported`);
-    }
+    return getServiceFactory(moduleName);
   }
 }

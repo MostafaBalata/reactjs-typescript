@@ -3,10 +3,10 @@ import { flattenDeep, map } from 'lodash';
 import { FormPage } from '../containers/FormPage';
 import HomePage from '../containers/HomePage';
 import { NotFoundPage } from "../containers/NotFoundPage";
-import AccountDeletionFormPage from '../modules/AccountDeletion/containers/FormPage';
-import AccountDeletionListPage from '../modules/AccountDeletion/containers/ListPage';
+
 
 import { makeLink } from './utils'
+import { getRouteElements } from '.';
 
 interface ILink {
   link: string,
@@ -25,9 +25,7 @@ export interface IRoute {
 export const routes: IRoute[] = [
   {
     "title": "Services",
-    "elements": [
-      { "content": "Account Deletion", icon: "trash", link: "/account-deletion", component: AccountDeletionListPage, formComponent: AccountDeletionFormPage },
-    ]
+    "elements": [...getRouteElements()]
   },
   {
     "title": "General",

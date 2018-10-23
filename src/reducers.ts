@@ -5,8 +5,8 @@
 import { combineReducers, Reducer } from "redux";
 
 import { homePageReducer } from "./containers/HomePage/reducers";
-import { listPageReducer } from "./containers/ListPage/reducers";
-import { accountDeletionFormReducer, accountDeletionListReducer } from "./modules/AccountDeletion/reducers";
+
+import { getReducers } from './settings';
 
 /**
  * Creates the main reducer with the dynamically injected ones
@@ -14,8 +14,7 @@ import { accountDeletionFormReducer, accountDeletionListReducer } from "./module
 export function createReducer(): Reducer {
   return combineReducers({
     homePage: homePageReducer,
-    list: listPageReducer,
-    accountDeletionListReducer,
-    accountDeletionFormReducer
+    // tslint:disable-next-line
+    ...getReducers()
   });
 }

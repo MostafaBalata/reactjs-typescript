@@ -9,7 +9,7 @@ import { deleteOneSuccessActionCreator, findOneSuccessActionCreator, TFormPageAc
 import { getDataSuccessListPageActionCreator, TAction } from "../containers/ListPage/actions";
 
 import { ServiceProviderFactory } from "../api/ServiceFactory";
-import { accountDeletionSaga } from "./AccountDeletion/saga";
+import { getSagas } from "../settings";
 
 /**
  * Dispatch an action that holding the result as records
@@ -71,7 +71,7 @@ export function* deleteOne(action: TFormPageAction): any {
 
 
 export function* modulesSagas(): SagaIterator {
-  yield effects.all([
-    effects.fork(accountDeletionSaga)
-  ]);
+
+
+  yield effects.all(getSagas());
 }
