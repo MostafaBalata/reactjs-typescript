@@ -7,12 +7,12 @@ import { getDataListPageActionCreator } from '../../../containers/ListPage/actio
 
 // componets
 import { ListPage } from '../../../containers/ListPage';
-import { getColumnsFromModel } from '../../../utils/services';
+import { getColumnsFromModel, convertModuleNameUrl, convertModuleNameToUpperCase } from '../../../utils/services';
 import { schema } from '../model';
 
 // Constants and Selectors
 import { makeSelectColumns, makeSelectListCount, makeSelectLoading, makeSelectRecords } from "../../../containers/ListPage/selectors";
-import { SOURCE_NAME, SOURCE_NAME_URL } from "../constants";
+import { MODULE_NAME } from "../constants";
 
 
 class AccountDeletionListPage extends ListPage {
@@ -20,8 +20,8 @@ class AccountDeletionListPage extends ListPage {
   constructor(props: any) {
     super(props);
     this.columns = getColumnsFromModel(schema) as [];
-    this.sourceNameUrl = SOURCE_NAME_URL;
-    this.sourceName = SOURCE_NAME;
+    this.moduleUrl = convertModuleNameUrl(MODULE_NAME);
+    this.moduleName = convertModuleNameToUpperCase(MODULE_NAME);
   }
 
 }
@@ -39,7 +39,7 @@ const mapListPageStateToProp = (reducerName: string) => createStructuredSelector
   loading: makeSelectLoading(reducerName)
 });
 
-export default connect<any, any, any>(
-  mapListPageStateToProp('accountDeletionListReducer'),
+export const ListPageConnector = (reducer: string) => connect<any, any, any>(
+  mapListPageStateToProp(reducer),
   mapDispatchToProps,
 )(AccountDeletionListPage);

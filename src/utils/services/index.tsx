@@ -1,4 +1,5 @@
 import { JSONSchema6 } from "json-schema";
+import { upperCase, lowerCase, upperFirst } from "lodash";
 
 interface IProperty {
   type: string,
@@ -28,3 +29,10 @@ export const getFormSchemaFromModel = (model: JSONSchema6) => {
     done: { type: "boolean", title: "Done?", default: false }
   }
 }
+
+export const convertModuleNameToUpperCase = (name: string) => upperCase(name).replace(" ", "_");
+
+export const convertModuleNameUrl = (name: string) => lowerCase(name).replace(" ", "-")
+
+
+export const getTitleFromModuleName = (name: string) => upperFirst(upperCase(name).toLowerCase());

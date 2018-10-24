@@ -1,9 +1,10 @@
-import { ACCOUNT_DELETION_MODULE_URL } from "./constants";
+import { MODULE_NAME } from "./constants";
 // Mocks and helpers
 import { find, slice } from 'lodash';
 import { data } from './mocked';
 import { IHttpResponse } from "../../api/IHttpClient";
 import { ApiServiceProvider } from "../../api/ApiServiceProvider";
+import { convertModuleNameUrl } from "../../utils/services";
 
 
 /**
@@ -11,7 +12,7 @@ import { ApiServiceProvider } from "../../api/ApiServiceProvider";
  */
 export class AccountDeletionSercviceProvider extends ApiServiceProvider {
   constructor() {
-    super(ACCOUNT_DELETION_MODULE_URL);
+    super(convertModuleNameUrl(MODULE_NAME));
   }
 
   public async get(id: string): Promise<IHttpResponse<any>> {
