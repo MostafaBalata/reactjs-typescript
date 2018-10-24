@@ -11,7 +11,7 @@ import { getDataSuccessListPageActionCreator, TAction } from "../containers/List
 import { ServiceProviderFactory } from "../api/ServiceFactory";
 import { getSagas } from "../settings";
 
-import { NotificationCenter } from "../notification";
+import { NotificationCenter } from "../lib/notification/notification";
 
 /**
  * Dispatch an action that holding the result as records

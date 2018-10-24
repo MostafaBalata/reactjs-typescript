@@ -5,7 +5,7 @@ import { compact } from 'lodash';
 
 import { HttpMethod, IHttpClient, IHttpRequestCommon, IHttpResponse, IHttpGetRequest } from "./IHttpClient";
 
-import { toSnakeCase } from "../utils";
+import { toSnakeCase } from "../../utils";
 
 export class HttpClient implements IHttpClient {
 

@@ -1,6 +1,6 @@
 import { IServiceProvider } from "./ServiceFactory";
-import { IHttpResponse } from "./IHttpClient";
-import { HttpClient } from "./HttpClient";
+import { IHttpResponse } from "../lib/http/IHttpClient";
+import { HttpClient } from "../lib/http/HttpClient";
 import { baseUrlApi } from "../settings";
 
 export class ApiServiceProvider implements IServiceProvider {

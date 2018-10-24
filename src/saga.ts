@@ -2,7 +2,7 @@ import { effects, SagaIterator } from "redux-saga";
 
 import { appSaga } from "./containers/HomePage/saga";
 import { modulesSagas } from "./modules/saga";
-import { NotificationCenter } from "./notification";
+import { NotificationCenter } from "./lib/notification/notification";
 
 function* sagas(): SagaIterator {
   yield effects.all([

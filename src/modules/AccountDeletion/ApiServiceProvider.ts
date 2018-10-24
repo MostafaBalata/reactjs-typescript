@@ -2,7 +2,7 @@ import { MODULE_NAME } from "./constants";
 // Mocks and helpers
 import { find, slice, size } from 'lodash';
 import { data } from './mocked';
-import { IHttpResponse } from "../../api/IHttpClient";
+import { IHttpResponse } from "../../lib/http/IHttpClient";
 import { ApiServiceProvider } from "../../api/ApiServiceProvider";
 import { convertModuleNameUrl } from "../../utils/services";
 

@@ -1,4 +1,4 @@
-import { IHttpResponse } from "./IHttpClient";
+import { IHttpResponse } from "../lib/http/IHttpClient";
 import { getServiceFactory } from "../settings";
 
 export interface IServiceProvider {
