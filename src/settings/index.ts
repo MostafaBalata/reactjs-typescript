@@ -10,7 +10,7 @@ export const baseUrlApi = '/api/v1'
  */
 
 const modules = [
-  { 'name': 'AccountDeletion' }
+  { 'name': 'AccountDeletion' },
 ];
 
 

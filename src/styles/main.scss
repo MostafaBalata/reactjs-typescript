@@ -5,6 +5,7 @@
   // Expose libs styles
   @import "./libs/bootstrap/bootstrap.scss";
   @import "./base/bootstrap-override.scss";
+  @import '../../node_modules/react-redux-toastr/src/styles/index';
 
   // Expose base styles
 

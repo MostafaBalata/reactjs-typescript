@@ -15,6 +15,7 @@ import { getRoutes } from "../../settings/routes"
 
 // Components & Containers
 import { LeftMenu } from "../LeftMenu/";
+import ReduxToastr from "react-redux-toastr";
 
 
 export class App extends React.Component {
@@ -35,6 +36,18 @@ export class App extends React.Component {
             </div>
           </div>
         </div>
+
+
+      <ReduxToastr
+        timeOut={4000}
+        newestOnTop={false}
+        preventDuplicates
+        position="top-right"
+        transitionIn="fadeIn"
+        transitionOut="fadeOut"
+        progressBar
+        closeOnToastrClick={true} />
+
       </div>
     );
   }

@@ -5,7 +5,7 @@ import { compact } from 'lodash';
 
 import { HttpMethod, IHttpClient, IHttpRequestCommon, IHttpResponse, IHttpGetRequest } from "./IHttpClient";
 
-import { toSnakeCase } from "../utils";
+import { toSnakeCase } from "../../utils";
 
 export class HttpClient implements IHttpClient {
 
@@ -23,12 +23,13 @@ export class HttpClient implements IHttpClient {
         method,
         body
       });
+
       if (!response.ok) {
         throw new Error(`${response.statusText}: ${response.status}`);
       }
 
     } catch (error) {
-      throw new Error(`Request error: ${error}`);
+      throw new Error(`${error}`);
     }
     return response;
   }

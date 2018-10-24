@@ -1,26 +1,37 @@
 import { size } from 'lodash';
 
-import { TAction } from '../../containers/ListPage/actions';
-import { ACCOUNT_DELETION_DELETE_ONE_SUCCESS, ACCOUNT_DELETION_GET_DATA, ACCOUNT_DELETION_GET_DATA_SUCCESS, ACCOUNT_DELETION_GET_ONE_RECORD_SUCCESS } from './constants';
+// constants
+import { DELETE_ONE_RECORD_SUCCESS, GET_ONE_RECORD_SUCCESS } from '../../containers/FormPage/constants';
+import { GET_DATA, GET_DATA_SUCCESS } from '../../containers/ListPage/constants';
 
+import { TAction } from '../../containers/ListPage/actions';
 import { initialStateListPage, IPropsListPage } from '../../containers/ListPage/reducers';
 
 import { TFormPageAction } from '../../containers/FormPage/actions';
+import { convertModuleNameToUpperCase, convertModuleNameUrl } from '../../utils/services';
+import { MODULE_NAME } from './constants';
+
+
+// * Note: reducer function started with Capital letter to match to module names
+
+export const SOURCE_NAME: string = convertModuleNameToUpperCase(MODULE_NAME);
+export const MODULE_URL: string = convertModuleNameUrl(MODULE_NAME);
 
 /**
  * Initializing the list reducer for this component
+ * Note: function started with Capital letter to match to module names
  * @param state 
  * @param action 
  */
-export function accountDeletionListReducer(state: IPropsListPage = initialStateListPage, action: TAction): IPropsListPage {
+export function ListReducer(state: IPropsListPage = initialStateListPage, action: TAction): IPropsListPage {
   switch (action.type) {
-    case ACCOUNT_DELETION_GET_DATA:
+    case `${SOURCE_NAME}/${GET_DATA}`:
       return {
         ...state,
         columns: action.payload.columns,
         loading: true
       }
-    case ACCOUNT_DELETION_GET_DATA_SUCCESS:
+    case `${SOURCE_NAME}/${GET_DATA_SUCCESS}`:
       return {
         ...state,
         records: action.payload.records,
@@ -42,11 +53,11 @@ const initialStateFormPage = {
   form: {}
 }
 
-export function accountDeletionFormReducer(state = initialStateFormPage, action: TFormPageAction): any {
+export function FormReducer(state = initialStateFormPage, action: TFormPageAction): any {
   switch (action.type) {
-    case ACCOUNT_DELETION_GET_ONE_RECORD_SUCCESS:
+    case `${SOURCE_NAME}/${GET_ONE_RECORD_SUCCESS}`:
       return { ...state, form: action.payload }
-    case ACCOUNT_DELETION_DELETE_ONE_SUCCESS:
+    case `${SOURCE_NAME}/${DELETE_ONE_RECORD_SUCCESS}`:
       return { ...state }
     default:
       return state;

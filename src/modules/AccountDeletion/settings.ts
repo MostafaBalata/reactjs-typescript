@@ -1,24 +1,26 @@
 // Sagas
 import { effects } from "redux-saga";
 import { ForkEffect } from "redux-saga/effects";
-import { accountDeletionSaga } from "./saga";
+import { moduleSaga } from "./saga";
 
 // Service Factory
 import { AccountDeletionSercviceProvider } from "./ApiServiceProvider";
 
 // Reducers
-import { accountDeletionFormReducer, accountDeletionListReducer } from "./reducers";
+import { FormReducer, ListReducer } from "./reducers";
 
 // Modules Containers
-import AccountDeletionFormPage from './FormPage';
-import AccountDeletionListPage from './ListPage';
+import { FormPageConnector } from './FormPage';
+import { ListPageConnector } from './ListPage';
+import { MODULE_NAME } from "./constants";
+import { getTitleFromModuleName, convertModuleNameUrl } from "../../utils/services";
 
 /***
  * Saga forks
  */
 
 export const sagas: ForkEffect[] = [
-  effects.fork(accountDeletionSaga),
+  effects.fork(moduleSaga),
 ]
 
 /**
@@ -32,13 +34,19 @@ export const getServiceProviderInstance = () => {
  * 
  * Reducers
  */
-export const reducers = {
-  accountDeletionListReducer,
-  accountDeletionFormReducer
-}
 
+const formStoreName: string = `${MODULE_NAME}FormReducer`;
+const listStoreName: string = `${MODULE_NAME}ListReducer`;
+export let reducers: any = {}
+reducers[`${listStoreName}`] = ListReducer;
+reducers[`${formStoreName}`] = FormReducer;
 
 /**
  * Routes
  */
-export const routeElement = { "content": "Account Deletion", icon: "copy", link: "/account-deletion", component: AccountDeletionListPage, formComponent: AccountDeletionFormPage }
+export const routeElement = {
+  "content": getTitleFromModuleName(MODULE_NAME),
+  icon: "copy", link: `/${convertModuleNameUrl(MODULE_NAME)}`,
+  component: ListPageConnector(listStoreName),
+  formComponent: FormPageConnector(formStoreName)
+}

@@ -1,43 +1,42 @@
 import { createSelector } from 'reselect';
 
 // tslint: disable-next-line
-const selecListPageReducer = (reducer: string) => (state: any) => state[reducer];
+const selecStateReducer = (reducer: string) => (state: any) => state[reducer];
 
 // Selectors
-const selectFormData = (reducer: string) => (state: any) => state[reducer].form.body;
+const selectFormData = (state: any) => state.form;
 
 // Selectors Makers
 const makeSelectRecords = (reducer: string) => createSelector(
-  selecListPageReducer(reducer),
+  selecStateReducer(reducer),
   (substate) => substate.records,
 );
 
 const makeSelectListCount = (reducer: string) => createSelector(
-  selecListPageReducer(reducer),
+  selecStateReducer(reducer),
   (substate) => substate.count,
 );
 
 const makeSelectColumns = (reducer: string) => createSelector(
-  selecListPageReducer(reducer),
+  selecStateReducer(reducer),
   (substate) => substate.columns,
 );
 const makeSelectLoading = (reducer: string) => createSelector(
-  selecListPageReducer(reducer),
+  selecStateReducer(reducer),
   (substate) => substate.loading,
 );
 
 // Form
 const makeSelectForm = (reducer: string) => createSelector(
-  selecListPageReducer(reducer),
+  selecStateReducer(reducer),
   (substate) => substate.form.body
 )
 
 export {
-  selecListPageReducer,
+  selectFormData,
   makeSelectRecords,
   makeSelectListCount,
   makeSelectColumns,
   makeSelectLoading,
   makeSelectForm,
-  selectFormData
 };

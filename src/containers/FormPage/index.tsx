@@ -6,6 +6,7 @@ import Form from "react-jsonschema-form";
 
 // Components
 import { Button } from 'reactstrap';
+import { selectFormData } from "../ListPage/selectors";
 
 interface IFormPageState {
   uniqueId: string,
@@ -39,7 +40,7 @@ export class FormPage extends React.Component<any, IFormPageState> {
       moduleName: this.sourceName,
     })
     findOne(this.sourceName, uniqueId);
-    this.form = this.props.form;
+    this.form = selectFormData(this.props);
 
   }
 

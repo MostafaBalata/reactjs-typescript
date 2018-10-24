@@ -15,8 +15,8 @@ import { IPropsListPage } from "./reducers";
 
 export class ListPage extends React.Component<IPropsListPage> {
   public columns: [] = [];
-  public sourceName: string = "";
-  public sourceNameUrl: string = "";
+  public moduleName: string = "";
+  public moduleUrl: string = "";
 
   constructor(props: any) {
     super(props);
@@ -33,7 +33,7 @@ export class ListPage extends React.Component<IPropsListPage> {
         cursor: 'pointer',
       },
       Cell: (prop: any) => <Link to={{
-        pathname: `/${this.sourceNameUrl}/${prop.original.jiraTrackId}`,
+        pathname: `/${this.moduleUrl}/${prop.original.jiraTrackId}`,
         search: ''
       }}>
         <span>Edit</span>
@@ -52,7 +52,7 @@ export class ListPage extends React.Component<IPropsListPage> {
     if (this.props.getData) {
 
       // This will dispatch action to redux
-      this.props.getData(this.sourceName, 0, this.columns);
+      this.props.getData(this.moduleName, 0, this.columns);
     }
 
   }
@@ -60,7 +60,7 @@ export class ListPage extends React.Component<IPropsListPage> {
   public onFetchData(pageNumber: number): [] {
     const columns = this.props.columns as [];
     if (this.props.getData) {
-      return this.props.getData(this.sourceName, pageNumber, columns);
+      return this.props.getData(this.moduleName, pageNumber, columns);
     }
     const errorMessage: string = "Source is not defind";
     throw new Error(`Unexpected Error: ${errorMessage}`)
