@@ -3,6 +3,7 @@
  */
 
 import { combineReducers, Reducer } from "redux";
+import { reducer as toastrReducer } from 'react-redux-toastr'
 
 import { homePageReducer } from "./containers/HomePage/reducers";
 
@@ -14,6 +15,7 @@ import { getReducers } from './settings';
 export function createReducer(): Reducer {
   return combineReducers({
     homePage: homePageReducer,
+    toastr: toastrReducer,
     // tslint:disable-next-line
     ...getReducers()
   });

@@ -1,6 +1,6 @@
 import { MODULE_NAME } from "./constants";
 // Mocks and helpers
-import { find, slice } from 'lodash';
+import { find, slice, size } from 'lodash';
 import { data } from './mocked';
 import { IHttpResponse } from "../../api/IHttpClient";
 import { ApiServiceProvider } from "../../api/ApiServiceProvider";
@@ -16,7 +16,13 @@ export class AccountDeletionSercviceProvider extends ApiServiceProvider {
   }
 
   public async get(id: string): Promise<IHttpResponse<any>> {
+
     const form: any = find(data, (record) => id === record.jiraTrackId);
+
+    if (!size(form)) {
+      throw new Error(`${id} not found`);
+    }
+
     return {
       body: form,
       statusCode: 200

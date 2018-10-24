@@ -23,12 +23,13 @@ export class HttpClient implements IHttpClient {
         method,
         body
       });
+
       if (!response.ok) {
         throw new Error(`${response.statusText}: ${response.status}`);
       }
 
     } catch (error) {
-      throw new Error(`Request error: ${error}`);
+      throw new Error(`${error}`);
     }
     return response;
   }
