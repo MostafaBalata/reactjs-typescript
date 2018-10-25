@@ -1,5 +1,8 @@
 // React & libs
 import * as React from "react";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import { createStructuredSelector } from "reselect";
 
 import { Link } from 'react-router-dom';
 
@@ -11,6 +14,8 @@ import { Table } from '../../components/Table';
 
 // selectors & reducers
 import { IPropsListPage } from "./reducers";
+import { getDataListPageActionCreator } from "./actions";
+import { makeSelectRecords, makeSelectListCount, makeSelectColumns, makeSelectLoading } from "./selectors";
 
 
 export class ListPage extends React.Component<IPropsListPage> {
@@ -76,3 +81,22 @@ export class ListPage extends React.Component<IPropsListPage> {
     );
   }
 }
+
+
+const mapDispatchToProps = (dispatch: any) => {
+  return bindActionCreators({
+    getData: getDataListPageActionCreator
+  }, dispatch)
+}
+
+const mapListPageStateToProp = (reducerName: string) => createStructuredSelector({
+  records: makeSelectRecords(reducerName),
+  number: makeSelectListCount(reducerName),
+  columns: makeSelectColumns(reducerName),
+  loading: makeSelectLoading(reducerName)
+});
+
+export const listConnector = (CustomListComponent: typeof React.Component) => (reducer: string) => connect<any, any, any>(
+  mapListPageStateToProp(reducer),
+  mapDispatchToProps,
+)(CustomListComponent);

@@ -21,6 +21,7 @@ const makeSelectNumber = () => createSelector(
   selecHomePageReducer(),
   (substate) => substate.number,
 );
+
 export {
   makeSelectMessage,
   makeSelectNumber,
