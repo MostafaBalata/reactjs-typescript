@@ -19,4 +19,4 @@ jobs:
           command: yarn test
       - run:
           name: Codecov
-          command: yarn codecov
+          command: bash <(curl -s https://codecov.io/bash)
