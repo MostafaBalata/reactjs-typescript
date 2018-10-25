@@ -10,7 +10,7 @@ interface IFormRequestAction {
   payload: IPayload, // @TODO: not sure if the id will be string.
 }
 
-interface IFormResponseAction {
+export interface IFormResponseAction {
   type: string,
   payload: any, // @TODO: not sure if the id will be string.
 }

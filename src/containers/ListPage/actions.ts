@@ -10,7 +10,7 @@ export interface IListPageGetDataAction {
   }
 }
 
-interface IListPageGetDataSuccessAction {
+export interface IListPageGetDataSuccessAction {
   type: string,
   moduleName: string,
   payload: {
@@ -18,7 +18,7 @@ interface IListPageGetDataSuccessAction {
   }
 }
 
-interface IInitList {
+export interface IInitList {
   type: string
   moduleName: string,
 }

@@ -1,12 +1,16 @@
 // React & libs
 import * as React from "react";
-
+import { bindActionCreators } from "redux";
+import { connect } from "react-redux";
 
 import Form from "react-jsonschema-form";
 
 // Components
 import { Button } from 'reactstrap';
-import { selectFormData } from "../ListPage/selectors";
+import { selectFormData, makeSelectForm } from "../ListPage/selectors";
+import { createStructuredSelector } from "reselect";
+
+import { findOneActionCreator, deleteOneActionCreator } from "./actions";
 
 interface IFormPageState {
   uniqueId: string,
@@ -23,7 +27,6 @@ export class FormPage extends React.Component<any, IFormPageState> {
   // The service name
   public sourceName: string = "";
 
-
   constructor(props: any) {
     super(props);
     this.onDelete = this.onDelete.bind(this);
@@ -32,7 +35,6 @@ export class FormPage extends React.Component<any, IFormPageState> {
   public componentDidMount(): void {
     const uniqueId = this.props.match.params.id;
     const { findOne } = this.props;
-
 
     this.setState({
       uniqueId,
@@ -89,3 +91,22 @@ export class FormPage extends React.Component<any, IFormPageState> {
     );
   }
 }
+
+
+
+
+const mapListPageStateToProp = (reducerName: string) => createStructuredSelector({
+  form: makeSelectForm(reducerName),
+});
+
+const mapDispatchToProps = (dispatch: any) => {
+  return bindActionCreators({
+    findOne: findOneActionCreator,
+    deleteOne: deleteOneActionCreator,
+  }, dispatch)
+}
+
+export const formConnector = (CustomFormComponent: typeof React.Component) => (reducer: string) => connect<any, any, any>(
+  mapListPageStateToProp(reducer),
+  mapDispatchToProps,
+)(CustomFormComponent);

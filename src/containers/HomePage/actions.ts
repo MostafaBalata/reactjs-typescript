@@ -46,4 +46,4 @@ export function triggerSagaMessage(message: string): ISagaMessageAction {
  * It can be one of the types defining in our action file
  * It will be useful to tell typescript about our types in our reducer
  */
-export type Action = ISagaMessageAction & IIncreaseAction;
+export type Action = ISagaMessageAction | IIncreaseAction;
