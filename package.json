@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
+    "codecov": "codecov",
     "serve": "./node_modules/webpack-dev-server/bin/webpack-dev-server.js --config ./webpack/webpack.config.dev.js",
     "build": "./node_modules/.bin/webpack",
     "format": "prettier --write \"src/**/*.{ts,tsx}\"",
