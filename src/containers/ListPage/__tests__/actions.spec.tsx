@@ -5,14 +5,14 @@ describe('Test Actions', () => {
   it('getDataListPageActionCreator', () => {
 
     const moduleName = "ModuleName"
-    const result = getDataListPageActionCreator(moduleName, 2, [], null);
+    const result = getDataListPageActionCreator(moduleName, 2, []);
     const expectedResult: IListPageGetDataAction = {
       type: `${moduleName}/${GET_DATA}`,
       moduleName,
       payload: {
         columns: [],
         pageNumber: 2,
-        search: null
+        search: "*"
       }
     }
 

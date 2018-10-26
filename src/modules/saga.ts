@@ -1,5 +1,5 @@
 // Saga
-import { effects, SagaIterator } from "redux-saga";
+import { SagaIterator } from "redux-saga";
 import { put } from "redux-saga/effects";
 
 // Libs
@@ -76,6 +76,6 @@ export function* deleteOne(action: TFormPageAction): any {
 }
 
 
-export function* modulesSagas(): SagaIterator {
-  yield effects.all(getSagas());
+export function getSagasFromModule(): SagaIterator[] {
+  return getSagas();
 }

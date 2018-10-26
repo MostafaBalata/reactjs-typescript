@@ -1,13 +1,14 @@
 import { effects, SagaIterator } from "redux-saga";
+import { all } from "redux-saga/effects";
 
 import { appSaga } from "./containers/HomePage/saga";
-import { modulesSagas } from "./modules/saga";
+import { getSagasFromModule } from "./modules/saga";
 import { NotificationCenter } from "./lib/notification/notification";
 
 function* sagas(): SagaIterator {
-  yield effects.all([
+  yield all([
     effects.fork(appSaga),
-    effects.fork(modulesSagas)
+    ...getSagasFromModule().map((singleProcess: any) => effects.fork(singleProcess))
   ]);
 }
 

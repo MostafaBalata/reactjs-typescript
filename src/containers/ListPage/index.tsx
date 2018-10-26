@@ -28,7 +28,7 @@ export class ListPage extends React.Component<IPropsListPage> {
     this.onFetchData = this.onFetchData.bind(this);
   }
 
-  public componentDidMount(): void {
+  public componentDidMount(): void {    
     const action =
     {
       Header: 'Actions',

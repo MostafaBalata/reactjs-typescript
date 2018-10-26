@@ -1,6 +1,4 @@
 // Sagas
-import { effects } from "redux-saga";
-import { ForkEffect } from "redux-saga/effects";
 import { moduleSaga } from "./saga";
 
 // Service Factory
@@ -19,10 +17,7 @@ import { getTitleFromModuleName, convertModuleNameUrl } from "../../utils/servic
  * Saga forks
  */
 
-export const sagas: ForkEffect[] = [
-  effects.fork(moduleSaga),
-]
-
+export const getSagaFunction = () => moduleSaga;
 /**
  *  Service factory
  */
