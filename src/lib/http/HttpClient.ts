@@ -9,7 +9,7 @@ import { toSnakeCase } from "../../utils";
 
 export class HttpClient implements IHttpClient {
 
-  private async makeRequest(url: string, method: HttpMethod, config: IHttpRequestCommon): Promise<Response> {
+  private async makeRequest(url: string, method: HttpMethod, config: IHttpRequestCommon): Promise<IHttpResponse<any>> {
     let response;
     try {
       const body: string | FormData | undefined = config.body
@@ -31,7 +31,7 @@ export class HttpClient implements IHttpClient {
     } catch (error) {
       throw new Error(`${error}`);
     }
-    return response;
+    return { body: response.body, statusCode: response.status };
   }
 
   // tslint:disable-next-line
@@ -42,6 +42,7 @@ export class HttpClient implements IHttpClient {
     const fullUrl = urlJoin(...urlParts);
     // Normal utility call
     return this.makeRequest(fullUrl, "GET", config);
+
   }
 
   // tslint:disable-next-line
