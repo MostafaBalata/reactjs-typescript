@@ -12,7 +12,7 @@ describe('Test Actions', () => {
       payload: {
         columns: [],
         pageNumber: 2,
-        search: null
+        search: "*"
       }
     }
 
