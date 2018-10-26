@@ -20,7 +20,7 @@ const modules = [
  * Return all sagas forks from all the modules
  */
 
-export const getSagas = () => modules.map(module => require(`../modules/${module.name}/settings`).sagas);
+export const getSagas = () => modules.map(module => require(`../modules/${module.name}/settings`).getSagaFunction());
 
 /**
  *  Service factory
