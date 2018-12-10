@@ -1,8 +1,9 @@
-import { DELETE_ONE_RECORD, DELETE_ONE_RECORD_SUCCESS, GET_ONE_RECORD, GET_ONE_RECORD_SUCCESS } from './constants';
+import { DELETE_ONE_RECORD, DELETE_ONE_RECORD_SUCCESS, GET_ONE_RECORD, GET_ONE_RECORD_SUCCESS, POST_ONE_RECORD, POST_ONE_RECORD_SUCCESS } from './constants';
 
 interface IPayload {
   body: string,
-  moduleName: string
+  moduleName: string,
+  formData ?: any
 }
 
 interface IFormRequestAction {
@@ -39,6 +40,18 @@ export function findOneSuccessActionCreator(source: string, formData: any): IFor
   }
 }
 
+// Post Request
+export function postOneActionCreator(source: string, id: string, formData: any): IFormRequestAction {
+  return {
+    type: `${source}/${POST_ONE_RECORD}`,
+    payload: {
+      body: id,      
+      moduleName: source,
+      formData
+    },
+  }
+}
+
 export function deleteOneActionCreator(source: string, id: string): IFormRequestAction {
   return {
     type: `${source}/${DELETE_ONE_RECORD}`,
@@ -52,6 +65,16 @@ export function deleteOneActionCreator(source: string, id: string): IFormRequest
 export function deleteOneSuccessActionCreator(source: string, message: string): IFormRequestAction {
   return {
     type: `${source}/${DELETE_ONE_RECORD_SUCCESS}`,
+    payload: {
+      body: message,
+      moduleName: source
+    },
+  }
+}
+
+export function postOneSuccessActionCreator(source: string, message: string): IFormRequestAction {
+  return {
+    type: `${source}/${POST_ONE_RECORD_SUCCESS}`,
     payload: {
       body: message,
       moduleName: source

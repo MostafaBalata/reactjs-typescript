@@ -28,7 +28,7 @@ export class ListPage extends React.Component<IPropsListPage> {
     this.onFetchData = this.onFetchData.bind(this);
   }
 
-  public componentDidMount(): void {    
+  public componentDidMount(): void {
     const action =
     {
       Header: 'Actions',
@@ -38,7 +38,7 @@ export class ListPage extends React.Component<IPropsListPage> {
         cursor: 'pointer',
       },
       Cell: (prop: any) => <Link to={{
-        pathname: `/${this.moduleUrl}/${prop.original.jiraTrackId}`,
+        pathname: `/${this.moduleUrl}/${this.getIdColumn(prop)}`,
         search: ''
       }}>
         <span>Edit</span>
@@ -76,9 +76,14 @@ export class ListPage extends React.Component<IPropsListPage> {
 
     return (
       <div className={styles.listPage}>
-        <Table records={records} columns={columns} loading={loading} onFetchData={this.onFetchData} />
+        {records.length > 1 && <Table records={records} columns={columns} loading={loading} onFetchData={this.onFetchData} /> }
       </div>
     );
+  }
+
+  private getIdColumn(property: any) : string{
+    const original = Object.keys(property.original);    
+    return original.length > 1 ? property.original[original[0]]: null;
   }
 }
 

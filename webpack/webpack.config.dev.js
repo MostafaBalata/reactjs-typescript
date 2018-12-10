@@ -17,6 +17,13 @@ module.exports = merge(configCommon, {
     historyApiFallback: true,
     headers: {
     },
+    proxy: {
+      '/api/v1': {
+          target: 'http://localhost:8091',
+          secure: false,
+          pathRewrite: { "^/api/v1": "" }
+      }
+    }
   },
   entry: ["react-hot-loader/patch"],
   plugins: [
