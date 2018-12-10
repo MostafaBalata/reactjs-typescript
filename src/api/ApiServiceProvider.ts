@@ -28,13 +28,25 @@ export class ApiServiceProvider implements IServiceProvider {
     return request.delete(config);
   }
 
+  public async post(id: string, formData: any): Promise<IHttpResponse<any>> {
+    const request = new HttpClient();
+    const config = {
+      baseUrl: `${baseUrlApi}/${this.moduleUrl}`,
+      url: `${id}`,
+      body: formData
+    }
+    return request.post(config);
+  }
+
   // tslint:disable-next-line
   public async getList(pageNumber: number, limit: number = 20): Promise<IHttpResponse<any>> {
     const request = new HttpClient();
     const config = {
-      url: `${baseUrlApi}/${this.moduleUrl}`,
-    }
-    return request.get(config);
+      url: `${baseUrlApi}/${this.moduleUrl}/`
+    };
+
+    const response = await request.get(config);
+    return response
   }
 
 }

@@ -10,12 +10,13 @@ import { Button } from 'reactstrap';
 import { selectFormData, makeSelectForm } from "../ListPage/selectors";
 import { createStructuredSelector } from "reselect";
 
-import { findOneActionCreator, deleteOneActionCreator } from "./actions";
+import { findOneActionCreator, deleteOneActionCreator, postOneActionCreator } from "./actions";
 
 interface IFormPageState {
   uniqueId: string,
   moduleName: string, // module Name
   sourceName: string, // Is prefix for reducers name
+  formBody?: any
 }
 
 export class FormPage extends React.Component<any, IFormPageState> {
@@ -30,6 +31,7 @@ export class FormPage extends React.Component<any, IFormPageState> {
   constructor(props: any) {
     super(props);
     this.onDelete = this.onDelete.bind(this);
+    this.onPost = this.onPost.bind(this);    
   }
 
   public componentDidMount(): void {
@@ -40,6 +42,7 @@ export class FormPage extends React.Component<any, IFormPageState> {
       uniqueId,
       sourceName: this.sourceName,
       moduleName: this.sourceName,
+      formBody: {}
     })
     findOne(this.sourceName, uniqueId);
     this.form = selectFormData(this.props);
@@ -55,6 +58,38 @@ export class FormPage extends React.Component<any, IFormPageState> {
     } else {
       throw new Error("Delete method is not supported.")
     }
+  }
+
+
+  public onPost(): void {
+    const { uniqueId } = this.state;
+    const { postOne } = this.props;
+
+    if (postOne) {
+      postOne(this.sourceName, uniqueId, this.state.formBody);
+    } else {
+      throw new Error("Post method is not supported.")
+    }
+  }
+
+  public actionsSection(): React.ReactNode {
+    return (
+      <div>
+        <h3>Actions</h3>
+        <div>
+          <Button outline color="success" onClick={this.onPost}>Post</Button>{' '}
+          <Button outline color="danger" onClick={this.onDelete}>Delete</Button>{' '}          
+        </div>
+      </div>
+    );
+  }
+
+  public extraSection(): React.ReactNode {
+    return (
+      <div>
+        <p>Extra information could be here.</p>
+      </div>
+    );
   }
 
   public render(): React.ReactNode {
@@ -75,16 +110,10 @@ export class FormPage extends React.Component<any, IFormPageState> {
         </div>
         <div className="col-md-6">
           <div className="block">
-            <h3>Actions</h3>
-
-            <div>
-              <Button outline color="danger" onClick={this.onDelete}>Delete</Button>{' '}
-              <Button outline color="success">Success</Button>{' '}
-              <Button outline color="info">Info</Button>{' '}
-            </div>
+            {this.actionsSection()}
           </div>
           <div className="block">
-            <p>Extra information could be here.</p>
+            {this.extraSection()}
           </div>
         </div>
       </div>
@@ -103,6 +132,7 @@ const mapDispatchToProps = (dispatch: any) => {
   return bindActionCreators({
     findOne: findOneActionCreator,
     deleteOne: deleteOneActionCreator,
+    postOne: postOneActionCreator,
   }, dispatch)
 }
 

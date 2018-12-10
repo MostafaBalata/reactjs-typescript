@@ -16,14 +16,16 @@ export class HttpClient implements IHttpClient {
         ? JSON.stringify(config.disableManglingRequestBody ? config.body : toSnakeCase(config.body))
         : undefined;
 
-      const headers = { 'Content-Type': 'application/json' }; // @TODO: prepare it after the auth
+      const headers = {
+        'Content-Type': 'application/json',
+        'Authorization': "Bearer sdfsdfsdfsdf",
+      }; // @TODO: prepare it after the auth
 
       response = await fetch(url, {
         headers,
         method,
         body
       });
-
       if (!response.ok) {
         throw new Error(`${response.statusText}: ${response.status}`);
       }
@@ -31,7 +33,7 @@ export class HttpClient implements IHttpClient {
     } catch (error) {
       throw new Error(`${error}`);
     }
-    return { body: response.body, statusCode: response.status };
+    return { body: await response.json(), statusCode: response.status };
   }
 
   // tslint:disable-next-line
@@ -55,6 +57,15 @@ export class HttpClient implements IHttpClient {
     return this.makeRequest(fullUrl, "DELETE", config);
   }
 
+  // tslint:disable-next-line
+  public async post<T>(config: IHttpGetRequest): Promise<IHttpResponse<T>> {
+    const qs = config.queryParams ? "?" + queryString.stringify(config.queryParams) : null;
+    // we need to remove falsy values because urlJoin is retarded and ads trailing slashes otherwise
+    const urlParts = compact([config.baseUrl, config.url, qs]);
+    const fullUrl = urlJoin(...urlParts);
+    // Normal utility call
+    return this.makeRequest(fullUrl, "POST", config);
+  }
 
 
 }

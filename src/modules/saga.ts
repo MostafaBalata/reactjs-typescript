@@ -1,11 +1,10 @@
 // Saga
 import { SagaIterator } from "redux-saga";
 import { put } from "redux-saga/effects";
-
 // Libs
 
 // Actions
-import { deleteOneSuccessActionCreator, findOneSuccessActionCreator, TFormPageAction } from "../containers/FormPage/actions";
+import { postOneSuccessActionCreator, deleteOneSuccessActionCreator, findOneSuccessActionCreator, TFormPageAction } from "../containers/FormPage/actions";
 import { getDataSuccessListPageActionCreator, TAction } from "../containers/ListPage/actions";
 
 import { ServiceProviderFactory } from "../api/ServiceFactory";
@@ -75,6 +74,27 @@ export function* deleteOne(action: TFormPageAction): any {
   }
 }
 
+/**
+ * Delete One record
+ * @param action 
+ */
+export function* postOne(action: TFormPageAction): any {
+  const moduleName: string = action.payload.moduleName;
+
+  try {
+    const serviceProvider = ServiceProviderFactory.load(moduleName);
+    const id = action.payload.body;
+    const formData = action.payload.formData;
+    const response = yield serviceProvider.post(id, formData);
+
+    yield put(postOneSuccessActionCreator(moduleName, response.body));
+    NotificationCenter.success("Request has been sent successfully");
+    // TODO: Notify someone
+
+  } catch (error) {
+    NotificationCenter.error("ERR_0001", error, moduleName);
+  }
+}
 
 export function getSagasFromModule(): SagaIterator[] {
   return getSagas();
