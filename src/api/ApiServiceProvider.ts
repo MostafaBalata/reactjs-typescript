@@ -42,7 +42,8 @@ export class ApiServiceProvider implements IServiceProvider {
   public async getList(pageNumber: number, limit: number = 20): Promise<IHttpResponse<any>> {
     const request = new HttpClient();
     const config = {
-      url: `${baseUrlApi}/${this.moduleUrl}/`
+      url: `${baseUrlApi}/${this.moduleUrl}/`,    
+      queryParams: { "page":  pageNumber.toString()}
     };
 
     const response = await request.get(config);

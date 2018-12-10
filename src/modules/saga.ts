@@ -24,7 +24,7 @@ export function* getList(action: TAction): any {
 
     const { pageNumber } = action.payload;
     const limit: number = 20;
-    const page: number = pageNumber * limit;
+    const page: number = pageNumber;
 
     const records = yield serviceProvider.getList(page, limit);
     yield put(getDataSuccessListPageActionCreator(moduleName, records.body));

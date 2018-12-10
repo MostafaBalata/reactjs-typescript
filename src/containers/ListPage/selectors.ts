@@ -9,7 +9,9 @@ const selectFormData = (state: any) => state.form;
 // Selectors Makers
 const makeSelectRecords = (reducer: string) => createSelector(
   selecStateReducer(reducer),
-  (substate) => substate.records,
+  (substate) =>  {    
+    return typeof substate.records.data !== "undefined"?substate.records.data:[];
+  },
 );
 
 const makeSelectListCount = (reducer: string) => createSelector(
