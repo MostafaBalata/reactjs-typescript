@@ -31,7 +31,7 @@ export class FormPage extends React.Component<any, IFormPageState> {
   constructor(props: any) {
     super(props);
     this.onDelete = this.onDelete.bind(this);
-    this.onPost = this.onPost.bind(this);    
+    this.onPost = this.onPost.bind(this);
   }
 
   public componentDidMount(): void {
@@ -42,11 +42,9 @@ export class FormPage extends React.Component<any, IFormPageState> {
       uniqueId,
       sourceName: this.sourceName,
       moduleName: this.sourceName,
-      formBody: {}
+      formBody: {},
     })
     findOne(this.sourceName, uniqueId);
-    this.form = selectFormData(this.props);
-
   }
 
   public onDelete(): void {

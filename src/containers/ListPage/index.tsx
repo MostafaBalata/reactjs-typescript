@@ -16,9 +16,16 @@ import { Table } from '../../components/Table';
 import { IPropsListPage } from "./reducers";
 import { getDataListPageActionCreator } from "./actions";
 import { makeSelectRecords, makeSelectListCount, makeSelectColumns, makeSelectLoading } from "./selectors";
+import Input from "reactstrap/lib/Input";
+import Button from "reactstrap/lib/Button";
+import InputGroup from "reactstrap/lib/InputGroup";
+
+interface IState {
+  search: string
+}
 
 
-export class ListPage extends React.Component<IPropsListPage> {
+export class ListPage extends React.Component<IPropsListPage, IState> {
   public columns: [] = [];
   public moduleName: string = "";
   public moduleUrl: string = "";
@@ -26,6 +33,10 @@ export class ListPage extends React.Component<IPropsListPage> {
   constructor(props: any) {
     super(props);
     this.onFetchData = this.onFetchData.bind(this);
+    this.onSearch = this.onSearch.bind(this);
+    this.state = {
+      search: ""
+    }
   }
 
   public componentDidMount(): void {
@@ -71,12 +82,30 @@ export class ListPage extends React.Component<IPropsListPage> {
     throw new Error(`Unexpected Error: ${errorMessage}`)
   }
 
+  public onSearch(e: any): void{
+    const key = this.state.search;
+    const pageNumber = 0;
+
+    // We check if getData exists or not, because it's an optional field
+    if (this.props.getData) {
+      // This will dispatch action to redux
+      this.props.getData(this.moduleName, pageNumber, this.columns, key);
+    }
+  }
+
   public render(): React.ReactNode {
     const { records, columns, loading } = this.props;
 
     return (
-      <div className={styles.listPage}>
-        {records.length > 1 && <Table records={records} columns={columns} loading={loading} onFetchData={this.onFetchData} /> }
+      <div>
+        <InputGroup>
+          <Input type="text" name="search" placeholder="Search" onChange={ (e: any)=> this.setState({"search": e.target.value})}/>
+          <Button onClick={this.onSearch}>Search</Button>
+        </InputGroup>
+
+        <div className={styles.listPage}>
+          {records.length >= 1 && <Table records={records} columns={columns} loading={loading} onFetchData={this.onFetchData} /> }
+        </div>
       </div>
     );
   }
@@ -90,7 +119,7 @@ export class ListPage extends React.Component<IPropsListPage> {
 
 const mapDispatchToProps = (dispatch: any) => {
   return bindActionCreators({
-    getData: getDataListPageActionCreator
+    getData: getDataListPageActionCreator,
   }, dispatch)
 }
 
