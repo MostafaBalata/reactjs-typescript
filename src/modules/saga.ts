@@ -5,7 +5,7 @@ import { put } from "redux-saga/effects";
 
 // Actions
 import { postOneSuccessActionCreator, deleteOneSuccessActionCreator, findOneSuccessActionCreator, TFormPageAction } from "../containers/FormPage/actions";
-import { getDataSuccessListPageActionCreator, TAction } from "../containers/ListPage/actions";
+import { getDataSuccessListPageActionCreator, IListPageGetDataAction } from "../containers/ListPage/actions";
 
 import { ServiceProviderFactory } from "../api/ServiceFactory";
 import { getSagas } from "../settings";
@@ -16,17 +16,16 @@ import { NotificationCenter } from "../lib/notification/notification";
  * Dispatch an action that holding the result as records
  * @param action 
  */
-export function* getList(action: TAction): any {
+export function* getList(action: IListPageGetDataAction): any {
   const moduleName: string = action.moduleName;
 
   try {
     const serviceProvider = ServiceProviderFactory.load(moduleName);
 
-    const { pageNumber } = action.payload;
+    const { pageNumber, search } = action.payload;
     const limit: number = 20;
-    const page: number = pageNumber * limit;
 
-    const records = yield serviceProvider.getList(page, limit);
+    const records = yield serviceProvider.getList(pageNumber, limit, search);    
     yield put(getDataSuccessListPageActionCreator(moduleName, records.body));
   } catch (error) {
     // @TODO: handle errors
@@ -44,8 +43,8 @@ export function* findOne(action: TFormPageAction): any {
   try {
     const serviceProvider = ServiceProviderFactory.load(moduleName);
     const response = yield serviceProvider.get(action.payload.body);
+        
     yield put(findOneSuccessActionCreator(moduleName, response.body));
-
     NotificationCenter.success(`${moduleName} is loaded successfuly.`);
 
   } catch (error) {

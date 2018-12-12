@@ -26,6 +26,7 @@ export class HttpClient implements IHttpClient {
         method,
         body
       });
+
       if (!response.ok) {
         throw new Error(`${response.statusText}: ${response.status}`);
       }

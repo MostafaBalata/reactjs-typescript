@@ -3,30 +3,17 @@ import { JSONSchema6 } from "json-schema";
 export const schema: JSONSchema6 = {
   title: 'Account Deletion',
   properties: {
-    status: {
-      type: "boolean",
-      title: "Status",
-      default: false
+    id: {
+      type: "string",
+      title: "Id"
     },
-    trackId: {
+    name: {
       type: "string",
       title: "Track Id"
     },
-    jiraTrackId: {
+    created_time: {
       type: "string",
-      title: "Jira Track Id"
-    },
-    creator: {
-      type: "string",
-      title: "Creator"
-    },
-    jobCreationTime: {
-      type: "string",
-      title: "Job creation time"
-    },
-    camundaId: {
-      type: "string",
-      title: "Camunda Id"
+      title: "Created time"
     }
   },
 }

@@ -3,7 +3,7 @@ export interface IPropsListPage {
   columns: any[],
   count: number,
   loading: boolean,
-  getData?: (sourceName: string, pageNumber: number, columns: []) => [],
+  getData?: (sourceName: string, pageNumber: number, columns: [], search?: string) => [],
   initList?: (sourceName: string) => void,
   getNextPage?: (pageNumber: number) => []
 }

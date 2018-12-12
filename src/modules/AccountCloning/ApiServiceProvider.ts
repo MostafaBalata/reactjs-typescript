@@ -6,7 +6,7 @@ import { convertModuleNameUrl } from "../../utils/services";
 /**
  * Service Provider 
  */
-export class AccountDeletionSercviceProvider extends ApiServiceProvider {
+export class AccountCloningSercviceProvider extends ApiServiceProvider {
   constructor() {
     super(convertModuleNameUrl(MODULE_NAME));
   }

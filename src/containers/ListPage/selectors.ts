@@ -4,12 +4,14 @@ import { createSelector } from 'reselect';
 const selecStateReducer = (reducer: string) => (state: any) => state[reducer];
 
 // Selectors
-const selectFormData = (state: any) => state.form;
+const selectFormData = (substate: any) => typeof substate.body !== "undefined"  ? substate.body.data : {}
 
 // Selectors Makers
 const makeSelectRecords = (reducer: string) => createSelector(
   selecStateReducer(reducer),
-  (substate) => substate.records,
+  (substate) =>  {    
+    return typeof substate.records.data !== "undefined"?substate.records.data:[];
+  },
 );
 
 const makeSelectListCount = (reducer: string) => createSelector(

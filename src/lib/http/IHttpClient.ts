@@ -28,7 +28,7 @@ export interface IHttpResponse<T> {
 
 export interface IHttpClient {
   get<T>(config: IHttpRequestCommon): Promise<IHttpResponse<T>>;
-  // post<T>(config: IHttpRequestCommon): Promise<IHttpResponse<T>>;
+  post<T>(config: IHttpRequestCommon): Promise<IHttpResponse<T>>;
   // put<T>(config: IHttpRequestCommon): Promise<IHttpResponse<T>>;
   // patch<T>(config: IHttpRequestCommon): Promise<IHttpResponse<T>>;
   // delete<T>(config: IHttpRequestCommon): Promise<IHttpResponse<T>>;

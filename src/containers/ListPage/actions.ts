@@ -27,7 +27,7 @@ export interface IInitList {
 export type TAction = IListPageGetDataAction & IListPageGetDataSuccessAction;
 
 // Action creators
-export function getDataListPageActionCreator(moduleName: string, pageNumber: number, columns: [], search: string = "*"): IListPageGetDataAction {
+export function getDataListPageActionCreator(moduleName: string, pageNumber: number, columns: [], search: string = ""): IListPageGetDataAction {
   return {
     type: `${moduleName}/${GET_DATA}`,
     moduleName,

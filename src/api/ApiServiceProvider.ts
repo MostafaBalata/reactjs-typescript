@@ -39,10 +39,18 @@ export class ApiServiceProvider implements IServiceProvider {
   }
 
   // tslint:disable-next-line
-  public async getList(pageNumber: number, limit: number = 20): Promise<IHttpResponse<any>> {
+  public async getList(pageNumber: number, limit: number = 20, search: string = ""): Promise<IHttpResponse<any>> {
     const request = new HttpClient();
+    const queryParams: any = {};
+    queryParams.page = pageNumber.toString();
+
+    if(search) {
+      queryParams.search = search;
+    }
+
     const config = {
-      url: `${baseUrlApi}/${this.moduleUrl}/`
+      url: `${baseUrlApi}/${this.moduleUrl}/`,
+      queryParams
     };
 
     const response = await request.get(config);

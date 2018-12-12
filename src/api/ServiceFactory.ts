@@ -5,7 +5,7 @@ export interface IServiceProvider {
   get: (id: string) => Promise<IHttpResponse<any>>;
   delete: (id: string) => Promise<IHttpResponse<any>>;
   post: (id: string, formData: any) => Promise<IHttpResponse<any>>;
-  getList: (pageNumber: number, limit?: number) => Promise<IHttpResponse<any>>;
+  getList: (pageNumber: number, limit?: number, search ?: string) => Promise<IHttpResponse<any>>;
 }
 
 

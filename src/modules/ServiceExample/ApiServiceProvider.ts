@@ -17,8 +17,7 @@ export class AccountDeletionSercviceProvider extends ApiServiceProvider {
 
   public async get(id: string): Promise<IHttpResponse<any>> {
 
-    const form: any = find(data, (record) => id === record.jiraTrackId);
-
+    const form: any = find(data, (record) => id === record.id);    
     if (!size(form)) {
       throw new Error(`${id} not found`);
     }
@@ -29,14 +28,14 @@ export class AccountDeletionSercviceProvider extends ApiServiceProvider {
     };
   }
 
-  public async getList(pageNumber: number, limit: number = 20): Promise<IHttpResponse<any>> {
+  public async getList(pageNumber: number, limit: number = 20, search = ""): Promise<IHttpResponse<any>> {
     const result = slice(data, pageNumber, pageNumber + limit).map((record) => {
       return record;
     }) as [];
 
     return {
       statusCode: 200,
-      body: result
+      body: { 'data': result, limit: 20, page: 1 }
     };
   }
 }

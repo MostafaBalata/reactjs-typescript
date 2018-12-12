@@ -11,6 +11,7 @@ export const baseUrlApi = '/api/v1'
 
 const modules = [
   { 'name': 'AccountCloning' },
+  { 'name': 'ServiceExample' },
 ];
 
 

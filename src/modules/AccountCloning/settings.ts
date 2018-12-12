@@ -2,7 +2,7 @@
 import { moduleSaga } from "./saga";
 
 // Service Factory
-import { AccountDeletionSercviceProvider } from "./ApiServiceProvider";
+import { AccountCloningSercviceProvider } from "./ApiServiceProvider";
 
 // Reducers
 import { FormReducer, ListReducer } from "./reducers";
@@ -22,7 +22,7 @@ export const getSagaFunction = () => moduleSaga;
  *  Service factory
  */
 export const getServiceProviderInstance = () => {
-  return new AccountDeletionSercviceProvider();
+  return new AccountCloningSercviceProvider();
 }
 
 /***
